@@ -161,24 +161,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-       {/* Interactive Map Section */}
-      <section>
-        <Card className="p-8">
-          <h2 className="text-3xl font-bold mb-6 text-center">Global Network Map</h2>
-          {/* REPLACED CONTENT BELOW */}
-          <InteractiveMapPlaceholder />
-        </Card>
-      </section>
-
-      {/* Carousel Section */}
-      <section>
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          Our Global Journey
-        </h2>
-        <div className="h-[500px] rounded-lg overflow-hidden shadow-card">
-          <AutoCarousel images={carouselImages} />
-        </div>
-      </section>
       {/* Projects Section */}
       <section>
         <h2 className="text-3xl font-bold mb-8">Our Initiatives</h2>
@@ -202,6 +184,25 @@ const Home = () => {
 </div>
 
       </section>
+       {/* Interactive Map Section */}
+      <section>
+        <Card className="p-8">
+          <h2 className="text-3xl font-bold mb-6 text-center">Global Network Map</h2>
+          {/* REPLACED CONTENT BELOW */}
+          <InteractiveMapPlaceholder />
+        </Card>
+      </section>
+
+      {/* Carousel Section */}
+      <section>
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          Our Global Journey
+        </h2>
+        <div className="h-[500px] rounded-lg overflow-hidden shadow-card">
+          <AutoCarousel images={carouselImages} />
+        </div>
+      </section>
+      
       {/* Features Grid */}
       <section className="py-12">
         <h2 className="text-3xl font-bold mb-8 text-center">
