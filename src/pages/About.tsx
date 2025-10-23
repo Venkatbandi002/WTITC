@@ -77,41 +77,6 @@ const About = () => {
         </Card>
       </section>
 
-      {/* Chairman's Message */}
-      <section>
-        <Card className="p-8 shadow-card bg-gradient-hero">
-          {/* Change flex items-start gap-6 to a grid/flex layout to place the image */}
-          <div className="grid md:grid-cols-[100px_1fr] gap-6 items-start"> 
-            
-            {/* PHOTO COLUMN */}
-            <div className="flex flex-col items-center">
-              <img 
-                src={chairmanPhoto} 
-                alt="Mr. Sundeep Kumar Makthala" 
-                // Styling for the image: circular, small, object cover
-                className="h-24 w-24 rounded-full object-cover shadow-lg border-4 border-primary/50" 
-              />
-              <p className="text-xs font-semibold text-primary mt-2">Chairman</p>
-            </div>
-            
-            {/* TEXT COLUMN */}
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                 <h2 className="text-2xl font-bold">Chairman's Message</h2>
-              </div>
-              <p className="text-sm text-muted-foreground mb-4">Mr. Sundeep Kumar Makthala</p>
-              <p className="text-muted-foreground leading-relaxed italic">
-                "It fills me with immense pride to lead an organization that bridges continents and 
-                connects brilliant minds. WTITC is more than just a professional network—it's a family 
-                of innovators, dreamers, and change-makers. Together, we are not just witnessing the 
-                future of technology; we are creating it. Our expansion to Silicon Valley is a testament 
-                to our commitment to excellence and our vision for a globally connected Telugu tech community."
-              </p>
-            </div>
-          </div>
-        </Card>
-      </section>
-
       {/* Timeline */}
       <section>
         <h2 className="text-3xl font-bold mb-8 text-center">Our Journey</h2>

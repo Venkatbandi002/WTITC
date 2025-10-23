@@ -1,56 +1,123 @@
-// src/components/InteractiveMapPlaceholder.tsx (New File)
+// src/components/InteractiveMapPlaceholder.tsx
+import React, { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { MapPin } from "lucide-react";
+import worldMapImage from "@/assets/Map.jpg";
 
-import { MapPin, Image } from "lucide-react";
-import worldMapImage from "@/assets/world-map.png";
+interface MapPinType {
+  id: number;
+  location: string;
+  info: string;
+  left: string;
+  top: string;
+  url?: string;
+}
 
-// Placeholder data for map points (pins)
-const mapPins = [
-  { id: 1, location: "Hyderabad", coords: "20.20", info: "HQ - 5,000+ Members", photo: "hyderabad-hq.jpg" },
-  { id: 2, location: "Silicon Valley", coords: "37.33", info: "Regional Office - 2,500+ Members", photo: "sv-office.jpg" },
-  // Add more pins for other countries (UK, Canada, Australia, etc.)
+const mapPins: MapPinType[] = [
+  { id: 1, location: "Hyderabad", info: "HQ - 5,000+ Members", left: "67.5%", top: "49%", url: "https://example.com/hyderabad" },
+  { id: 2, location: "Silicon Valley", info: "Regional Office - 2,500+ Members", left: "16%", top: "37%", url: "https://example.com/siliconvalley" },
+  { id: 3, location: "London", info: "UK Office - 1,000+ Members", left: "45%", top: "27%", url: "https://example.com/london" },
 ];
 
 const InteractiveMapPlaceholder = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [activePinId, setActivePinId] = useState<number | null>(null);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (!isPaused) {
+      controls.start({
+        x: ["0%", "-100%"],
+        transition: { duration: 40, ease: "linear", repeat: Infinity },
+      });
+    } else {
+      controls.stop();
+    }
+  }, [isPaused, controls]);
+
+  const toggleScroll = () => {
+    if (activePinId) return;
+    setIsPaused((prev) => !prev);
+  };
+
   return (
-    <div className="relative aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg shadow-inner flex items-center justify-center">
-      {/* This is where the actual interactive map element (e.g., Leaflet map component) 
-        would eventually be rendered. For now, we use a static map image or a simple background. 
-      */}
-      <div><img 
-        src={worldMapImage}
-        alt="World Map with WTITC presence"
-        // CHANGED: object-cover to object-contain
-        className="absolute inset-0 w-full h-full object-contain opacity-80 dark:opacity-60" 
-      /></div>
+    <div
+      className="relative aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg shadow-inner overflow-hidden cursor-pointer select-none"
+      onClick={() => {
+        if (activePinId) {
+          setActivePinId(null);
+        } else {
+          toggleScroll();
+        }
+      }}
+    >
+      {/* Map + pins scroll together */}
+      <motion.div
+        animate={controls}
+        className="absolute flex w-[200%] h-full top-0 left-0"
+      >
+        {[0, 1].map((idx) => (
+          <div key={idx} className="relative w-1/2 h-full">
+            <img
+              src={worldMapImage}
+              alt="World Map"
+              className="absolute inset-0 w-full h-full object-contain"
+            />
 
-      {/* Placeholder for Pins with Hover Effect (Concept) */}
-      {mapPins.map((pin) => (
-        <div 
-          key={pin.id} 
-          // NOTE: 'left-x' and 'top-y' classes are placeholders and must be dynamically calculated 
-          // based on actual map coordinates when using a real library.
-          className={`absolute cursor-pointer group`}
-          style={{ 
-            left: pin.location === "Hyderabad" ? "69.5%" : (pin.location === "Silicon Valley" ? "7%" : "50%"), 
-            top: pin.location === "Hyderabad" ? "42%" : (pin.location === "Silicon Valley" ? "28%" : "50%"),
-        }}
-        >
-          {/* Pin Icon */}
-          <MapPin className="h-8 w-8 text-red-600 animate-pulse duration-1000 transition-transform group-hover:scale-125" />
+            {/* Pins + tooltips */}
+            {mapPins.map((pin) => (
+              <div
+                key={pin.id}
+                className="absolute z-20"
+                style={{ left: pin.left, top: pin.top }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActivePinId(pin.id);
+                }}
+              >
+                <MapPin className="h-8 w-8 text-red-600 animate-pulse transition-transform group-hover:scale-125" />
 
-          {/* Hover Box (Tooltip) */}
-          <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 p-3 w-64 bg-white dark:bg-card-bg rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300 pointer-events-none z-50 border border-primary/20">
-            <h4 className="font-bold text-primary mb-1">{pin.location}</h4>
-            <p className="text-sm text-muted-foreground mb-2">{pin.info}</p>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Image className="h-4 w-4" />
-              <span>View Office Photo</span>
-            </div>
-            {/* You would embed the actual image here */}
-            {/* <img src={require(`@/assets/${pin.photo}`)} alt={pin.location} className="w-full h-24 object-cover mt-2 rounded" /> */}
+                {/* Tooltip rendered inside the pin container so it moves with the pin */}
+                {activePinId === pin.id && (
+                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-card-bg text-black dark:text-white p-3 rounded-lg shadow-xl w-64 border border-primary/20 z-30 pointer-events-auto">
+                    <h4 className="font-bold text-primary mb-1">{pin.location}</h4>
+                    <p className="text-sm text-muted-foreground mb-2">{pin.info}</p>
+                    <button
+                      onClick={() => window.open(pin.url, "_blank")}
+                      className="mt-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded text-sm w-full"
+                    >
+                      Visit Office Page
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Lines connecting pins */}
+            <svg
+              className="absolute top-0 left-0 w-full h-full pointer-events-none z-10"
+              preserveAspectRatio="none"
+            >
+              {mapPins.map((pin, idx) => {
+                if (idx === mapPins.length - 1) return null;
+                const nextPin = mapPins[idx + 1];
+                return (
+                  <motion.path
+                    key={idx}
+                    d={`M${pin.left} ${pin.top} Q50% 20%, ${nextPin.left} ${nextPin.top}`}
+                    stroke="rgba(255,255,255,0.6)"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeDasharray="8"
+                    animate={{ strokeDashoffset: [16, 0] }}
+                    transition={{ duration: 2, ease: "linear", repeat: Infinity }}
+                  />
+                );
+              })}
+            </svg>
           </div>
-        </div>
-      ))}
+        ))}
+      </motion.div>
     </div>
   );
 };

@@ -7,6 +7,8 @@ import homeBanner from "@/assets/home-banner.jpg";
 import carousel1 from "@/assets/carousel-1.jpg";
 import carousel2 from "@/assets/carousel-2.jpg";
 import carousel3 from "@/assets/carousel-3.jpg";
+import { url } from "inspector";
+import InteractiveMapPlaceholder from "@/components/ui/InteractiveMapPlaceholder";
  
 const Home = () => {
   const projects = [
@@ -16,7 +18,8 @@ const Home = () => {
       tagline: "Expert Technology Consulting",
       description: "Professional consulting services connecting businesses with Telugu tech experts worldwide. From strategy to implementation, we provide comprehensive technology solutions.",
       impact: "500+ projects completed, $10M+ in business value created",
-      status: "Active"
+      status: "Active",
+      url: "https://t-consult.wtitc.org"
     },
     {
       icon: TrendingUp,
@@ -24,7 +27,8 @@ const Home = () => {
       tagline: "Business Growth Accelerator",
       description: "Empowering Telugu businesses and startups to scale globally through mentorship, funding connections, and market access. A comprehensive growth platform.",
       impact: "200+ startups supported, 50+ successful exits",
-      status: "Active"
+      status: "Active",
+      url: "https://t-consult.wtitc.org"
     },
     {
       icon: Video,
@@ -32,7 +36,8 @@ const Home = () => {
       tagline: "Video on Demand for Tech Learning",
       description: "Curated video content library featuring tech tutorials, industry insights, and expert talks from leading Telugu IT professionals.",
       impact: "10,000+ hours of content, 50,000+ learners",
-      status: "Active"
+      status: "Active",
+      url: "https://t-consult.wtitc.org"
     },
     {
       icon: Megaphone,
@@ -40,7 +45,8 @@ const Home = () => {
       tagline: "Startup Visibility Platform",
       description: "Connect startups with media outlets and investors. Get your innovation featured and attract funding through strategic press coverage.",
       impact: "300+ startups featured, $25M+ funding facilitated",
-      status: "Active"
+      status: "Active",
+      url: "https://t-consult.wtitc.org"
     },
     {
       icon: Code,
@@ -48,7 +54,8 @@ const Home = () => {
       tagline: "Innovation Through Competition",
       description: "48-hour coding marathon bringing together the brightest minds to solve real-world problems. Win prizes, recognition, and job opportunities.",
       impact: "5,000+ participants, 100+ winning projects",
-      status: "Annual Event"
+      status: "Annual Event",
+      url: "https://t-consult.wtitc.org"
     },
     {
       icon: Cpu,
@@ -56,7 +63,8 @@ const Home = () => {
       tagline: "Telugu Computer Hardware Innovation Program",
       description: "Fostering hardware innovation and semiconductor research within the Telugu community. Building the next generation of chip designers and manufacturers.",
       impact: "20+ research projects, 3 patent applications",
-      status: "Active"
+      status: "Active",
+      url: "https://t-consult.wtitc.org"
     },
     {
       icon: Globe,
@@ -64,7 +72,8 @@ const Home = () => {
       tagline: "Telugu Student Innovation & Mentorship",
       description: "Connecting students with industry mentors, providing internship opportunities, and nurturing the next generation of Telugu tech leaders.",
       impact: "2,000+ students mentored, 500+ internships",
-      status: "Active"
+      status: "Active",
+      url: "https://t-consult.wtitc.org"
     }
   ];
 
@@ -152,6 +161,14 @@ const Home = () => {
           </div>
         </div>
       </section>
+       {/* Interactive Map Section */}
+      <section>
+        <Card className="p-8">
+          <h2 className="text-3xl font-bold mb-6 text-center">Global Network Map</h2>
+          {/* REPLACED CONTENT BELOW */}
+          <InteractiveMapPlaceholder />
+        </Card>
+      </section>
 
       {/* Carousel Section */}
       <section>
@@ -165,41 +182,25 @@ const Home = () => {
       {/* Projects Section */}
       <section>
         <h2 className="text-3xl font-bold mb-8">Our Initiatives</h2>
-        <div className="grid sm:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <Card key={index} className="p-8 shadow-card hover:shadow-hover transition-smooth">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <project.icon className="h-8 w-8 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <h3 className="text-2xl font-bold">{project.name}</h3>
-                      <p className="text-sm text-primary font-semibold">{project.tagline}</p>
-                    </div>
-                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
-                      {project.status}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {project.description}
-              </p>
-              
-              <div className="p-4 bg-secondary/30 rounded-lg mb-4">
-                <p className="text-sm font-semibold mb-1">Impact:</p>
-                <p className="text-sm text-muted-foreground">{project.impact}</p>
-              </div>
-              
-              <Button variant="outline" className="w-full">
-                Learn More <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Card>
-          ))}
-        </div>
+        <div className="flex flex-col gap-10">
+  {projects.map((project, index) => (
+    <div key={index} className="flex items-start gap-4">
+      <project.icon className="h-10 w-10 text-accent flex-shrink-0 mt-1" />
+      <div>
+        <h2 className="text-3xl font-bold mb-4">{project.name}</h2>
+        <p className="text-lg text-muted-foreground mb-6">
+          {project.description}
+        </p>
+        <Button asChild>
+          <a href={project.url || "#"} target="_blank" rel="noopener noreferrer">
+            Learn More
+          </a>
+        </Button>
+      </div>
+    </div>
+  ))}
+</div>
+
       </section>
       {/* Features Grid */}
       <section className="py-12">
