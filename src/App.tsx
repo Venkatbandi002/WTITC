@@ -7,7 +7,7 @@ import InteractiveMapPlaceholder from "@/components/ui/InteractiveMapPlaceholder
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import About from "./pages/About";
+import About from "./pages/leadership/About";
 import Leadership from "./pages/Leadership";
 import GlobalPresence from "./pages/GlobalPresence";
 import Events from "./pages/Events";
@@ -16,7 +16,14 @@ import Gallery from "./pages/Gallery";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import Chairman from "./pages/Chairman";
+import Chairman from "./pages/leadership/Chairman";
+import Council from "./pages/leadership/Council";
+import YoungVoices from "./pages/leadership/Young";
+import StrategicMandate from "./pages/leadership/mandate";
+import Chapter from "./pages/global/Chapter";
+import GlobalConclaves from "./pages/global/Conclave";
+import Bulletin from "./pages/global/bulletin";
+import Metrics from "./pages/global/metrics";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +38,6 @@ const App = () => (
           <main className="flex-1 container mx-auto px-4 py-8">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
               <Route path="/leadership" element={<Leadership />} />
               <Route path="/global" element={<GlobalPresence />} />
               <Route path="/events" element={<Events />} />
@@ -40,6 +46,14 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/leadership/chairman" element={<Chairman />} />
+              <Route path="/leadership/about" element={<About />} />
+              <Route path="/leadership/council" element={<Council />} />
+              <Route path="/leadership/young" element={<YoungVoices />} />
+              <Route path="/leadership/mandate" element={<StrategicMandate />} />
+              <Route path="/global/chapters" element={<Chapter />} />
+              <Route path="/global/conclaves" element={<GlobalConclaves />} />
+              <Route path="/global/bulletin" element={<Bulletin />} />
+              <Route path="/global/metrics" element={<Metrics />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

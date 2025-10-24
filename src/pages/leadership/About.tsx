@@ -15,19 +15,14 @@ const About = () => {
   return (
     <div className="space-y-12">
       {/* Header Banner */}
-      <section className="relative h-80 rounded-lg overflow-hidden shadow-card">
-        <img
-          src={aboutBanner}
-          alt="About WTITC"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/0 flex items-center">
-          <div className="container mx-auto px-6">
-            <h1 className="text-5xl font-bold text-white">About WTITC</h1>
-            <p className="text-xl text-white/90 mt-2">World Telugu Information Technology Council</p>
-          </div>
+      <div className="text-center md:text-left space-y-4">
+          <h2 className="text-4xl font-bold text-gray-900">
+            About WTITC
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto md:mx-0 leading-relaxed">
+            World Telugu Information Technology Council
+          </p>
         </div>
-      </section>
 
       {/* Mission & Vision */}
       <section className="grid md:grid-cols-2 gap-6">

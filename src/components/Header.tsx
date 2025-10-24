@@ -15,9 +15,9 @@ const navItems = [
         path: "/leadership",
         dropdown: [
             { name: "Chairman at the Forefront", path: "/leadership/chairman" },
-            { name: "About WTITC", path: "/about" },
+            { name: "About WTITC", path: "/leadership/about" },
             { name: "Global Council Leaders", path: "/leadership/Council" },
-            { name: "Young Voices", path: "/leadership/youth" },
+            { name: "Young Voices", path: "/leadership/Young" },
             { name: "Strategic Mandate", path: "/leadership/mandate" },
         ]
     },
