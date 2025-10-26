@@ -42,6 +42,7 @@ const App = () => (
           <main className="flex-1 container mx-auto px-4 py-8">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/WTITC/" element={<Home />} />
               <Route path="/leadership" element={<Leadership />} />
               <Route path="/global" element={<GlobalPresence />} />
               <Route path="/events" element={<Events />} />
