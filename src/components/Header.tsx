@@ -41,8 +41,6 @@ const navItems = [
         dropdown: [
             { name: "Flagship Initiatives", path: "/projects/flagship" },
             { name: "Future Frontiers (R&D)", path: "/projects/research" },
-            { name: "Innovation Hubs", path: "/projects/hubs" },
-            { name: "Impact Drives (Challenges)", path: "/projects/challenges" },
             { name: "Alliance Network", path: "/projects/alliances" },
             { name: "Global Missions", path: "/projects/missions" },
         ]
@@ -53,7 +51,6 @@ const navItems = [
         name: "Beyond Borders",
         path: "/borders",
         dropdown: [
-            { name: "Global Synergies", path: "/borders/synergies" },
             { name: "Business Connect", path: "/borders/business" },
             { name: "Talent Bridge", path: "/borders/talent" },
             { name: "Hall of Impact", path: "/borders/impact" },

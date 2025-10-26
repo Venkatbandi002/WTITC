@@ -110,34 +110,27 @@ const GlobalBulletin: React.FC = () => {
 
   return (
     // Main container uses a light background
-    <div className="bg-gray-50">
+    <div>
       <div>
         
         {/* Section Header with Image Background */}
-        <div 
-          className="relative text-center py-16 rounded-xl overflow-hidden mb-12 bg-cover bg-center shadow-xl"
-          style={{ backgroundImage: `url(${headerImagePath})` }}
-        >
           {/* Overlay for better text readability */}
-          <div className="absolute inset-0 bg-blue-800 bg-opacity-70 flex items-center justify-center">
-            <div className="max-w-4xl mx-auto px-4 text-white">
-              <h2 className="text-4xl sm:text-5xl font-extrabold mb-3">
-                Global Bulletin
+          <div className="mx-auto text-left pb-6 ">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                  Global Bulletin
               </h2>
-              <p className="text-xl text-blue-100">
-                The latest news, reports, and insights from our worldwide network.
+              <p className="text-lg text-gray-700 max-w-2xl">
+                  The latest news, reports, and insights from our worldwide network.
               </p>
-            </div>
           </div>
-        </div>
 
         {/* --- Featured Article Section --- */}
         {featuredPost && (
             <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-blue-500 pb-2">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 border-b-2 pb-2 ">
                     Featured Insight
                 </h3>
-                <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8 border-t-4 border-blue-600">
+                <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8 border-t-4">
                     
                     {/* Featured Image */}
                     <div className="lg:col-span-2 rounded-lg overflow-hidden">
@@ -181,7 +174,7 @@ const GlobalBulletin: React.FC = () => {
             </div>
         </div>
         
-        {/* Footer CTA */}
+        {/* Footer CTA 
         <div className="pt-12 text-center mt-12 border-t border-blue-200">
             <p className="text-gray-700 text-lg">
                 Don't miss a single update.
@@ -189,7 +182,7 @@ const GlobalBulletin: React.FC = () => {
             <button className="mt-4 py-3 px-8 bg-blue-500 text-white text-md font-semibold rounded-lg shadow-xl hover:bg-blue-600 transition duration-300">
                 Subscribe to Bulletin
             </button>
-        </div>
+        </div>*/}
 
       </div>
     </div>

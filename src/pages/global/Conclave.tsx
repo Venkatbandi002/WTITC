@@ -146,7 +146,7 @@ const GlobalConclaves: React.FC = () => {
 
   return (
     // Main container uses a light background
-    <div className="bg-gray-50">
+    <div>
       <div className="">
         
         {/* Section Header with Image Background */}
@@ -156,8 +156,8 @@ const GlobalConclaves: React.FC = () => {
           style={{ backgroundImage: `url(${headerImage})` }}
         >
           {/* Overlay for better text readability */}
-          <div className="mx-auto text-left px-6 ">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          <div className="mx-auto text-left ">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
                   Global Conclaves
               </h2>
               <p className="text-lg text-gray-700 max-w-2xl">
@@ -167,7 +167,7 @@ const GlobalConclaves: React.FC = () => {
         </div>
 
         {/* Timeline Content */}
-        <div className="md:pl-4">
+        <div >
           {conclavesData.map((conclave, index) => (
             <ConclaveTimelineItem
               key={conclave.id}

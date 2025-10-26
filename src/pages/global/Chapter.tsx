@@ -125,9 +125,9 @@ const ChapterText: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
 
 const GlobalChapters: React.FC = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-blue-50 w-full">
+    <div >
       {/* Section Heading (left-aligned like other pages) */}
-      <div className="mx-auto text-left px-6 ">
+      <div className="mx-auto text-left ">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
           Our Global Chapters
         </h2>

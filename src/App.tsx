@@ -24,6 +24,10 @@ import Chapter from "./pages/global/Chapter";
 import GlobalConclaves from "./pages/global/Conclave";
 import Bulletin from "./pages/global/bulletin";
 import Metrics from "./pages/global/metrics";
+import FlagshipInitiatives from "./pages/projects/flagship";
+import FutureFrontiers from "./pages/projects/research";
+{/*import Alliance from "./pages/projects/alliances";*/}
+
 
 const queryClient = new QueryClient();
 
@@ -54,6 +58,9 @@ const App = () => (
               <Route path="/global/conclaves" element={<GlobalConclaves />} />
               <Route path="/global/bulletin" element={<Bulletin />} />
               <Route path="/global/metrics" element={<Metrics />} />
+              <Route path="/projects/flagship" element={<FlagshipInitiatives />} />
+              <Route path="/projects/research" element={<FutureFrontiers />} />
+              {/*<Route path="/projects/alliances" element={<Alliance />} />*/}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
