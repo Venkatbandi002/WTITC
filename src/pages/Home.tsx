@@ -19,7 +19,7 @@ const Home = () => {
       description: "Professional consulting services connecting businesses with Telugu tech experts worldwide. From strategy to implementation, we provide comprehensive technology solutions.",
       impact: "500+ projects completed, $10M+ in business value created",
       status: "Active",
-      url: "https://t-consult.wtitc.org"
+      url: "https://tconsult.co/"
     },
     {
       icon: TrendingUp,
@@ -28,7 +28,7 @@ const Home = () => {
       description: "Empowering Telugu businesses and startups to scale globally through mentorship, funding connections, and market access. A comprehensive growth platform.",
       impact: "200+ startups supported, 50+ successful exits",
       status: "Active",
-      url: "https://t-consult.wtitc.org"
+      url: "https://expandme.co/"
     },
     {
       icon: Video,
@@ -37,7 +37,7 @@ const Home = () => {
       description: "Curated video content library featuring tech tutorials, industry insights, and expert talks from leading Telugu IT professionals.",
       impact: "10,000+ hours of content, 50,000+ learners",
       status: "Active",
-      url: "https://t-consult.wtitc.org"
+      url: "https://digithon.org/"
     },
     {
       icon: Megaphone,
@@ -46,7 +46,7 @@ const Home = () => {
       description: "Connect startups with media outlets and investors. Get your innovation featured and attract funding through strategic press coverage.",
       impact: "300+ startups featured, $25M+ funding facilitated",
       status: "Active",
-      url: "https://t-consult.wtitc.org"
+      url: "https://pitch2press.com/"
     },
     {
       icon: Code,
@@ -64,7 +64,7 @@ const Home = () => {
       description: "Fostering hardware innovation and semiconductor research within the Telugu community. Building the next generation of chip designers and manufacturers.",
       impact: "20+ research projects, 3 patent applications",
       status: "Active",
-      url: "https://t-consult.wtitc.org"
+      url: "https://www.tchip.co/"
     },
     {
       icon: Globe,
@@ -73,7 +73,7 @@ const Home = () => {
       description: "Connecting students with industry mentors, providing internship opportunities, and nurturing the next generation of Telugu tech leaders.",
       impact: "2,000+ students mentored, 500+ internships",
       status: "Active",
-      url: "https://t-consult.wtitc.org"
+      url: "https://www.tchip.co/"
     }
   ];
 
@@ -146,12 +146,12 @@ const Home = () => {
                 Connecting innovation, fostering collaboration, and building a global Telugu IT community
               </p>
               <div className="flex gap-4">
-                <Link to="/join">
+                <Link to="/engagement/member">
                   <Button size="lg" className="font-semibold">
                     Join WTITC <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to="/about">
+                <Link to="/leadership/about">
                   <Button size="lg" variant="secondary" className="font-semibold">
                     Learn More
                   </Button>
