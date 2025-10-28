@@ -26,7 +26,24 @@ import Bulletin from "./pages/global/bulletin";
 import Metrics from "./pages/global/metrics";
 import FlagshipInitiatives from "./pages/projects/flagship";
 import FutureFrontiers from "./pages/projects/research";
-{/*import Alliance from "./pages/projects/alliances";*/}
+import GlobalMission from "./pages/projects/missions";
+import AllianceNetwork from "./pages/projects/alliances";
+import BusinessConnect from "./pages/borders/business";
+import TalentBridge from "./pages/borders/talent";
+import HallOfImpact from "./pages/borders/impact";
+import RuralDigitalMission from "./pages/social/digital-missions";
+import WomenInTech from "./pages/social/women";
+import YouthEmpowerment from "./pages/social/youth";
+import Sustainability from "./pages/social/sustainability";
+import StrategicAdvisory from "./pages/alliance/advisory";
+import ExpansionFacilitation from "./pages/alliance/expansion";
+import InnovationEnablement from "./pages/alliance/enablement";
+import AllianceDevelopment from "./pages/alliance/development";
+import Accreditation from "./pages/alliance/accreditation";
+import MemberPage from "./pages/engagement/member";
+import Partner from "./pages/engagement/partner";
+import Volunteer from "./pages/engagement/volunteer";
+import Support from "./pages/engagement/support";
 
 
 const queryClient = new QueryClient();
@@ -61,7 +78,24 @@ const App = () => (
               <Route path="/global/metrics" element={<Metrics />} />
               <Route path="/projects/flagship" element={<FlagshipInitiatives />} />
               <Route path="/projects/research" element={<FutureFrontiers />} />
-              {/*<Route path="/projects/alliances" element={<Alliance />} />*/}
+              <Route path="/projects/alliances" element={<AllianceNetwork/>} />
+              <Route path="/projects/missions" element={<GlobalMission />} />
+              <Route path="/borders/business" element={<BusinessConnect />} />
+              <Route path="/borders/talent" element={<TalentBridge />} />
+              <Route path="/borders/impact" element={<HallOfImpact />} />
+              <Route path="/social/digital-missions" element={<RuralDigitalMission />} />
+              <Route path="/social/women" element={<WomenInTech />} />
+              <Route path="/social/youth" element={<YouthEmpowerment />} />
+              <Route path="/social/sustainability" element={<Sustainability />} />
+              <Route path="/alliance/advisory" element={<StrategicAdvisory />} />
+              <Route path="/alliance/expansion" element={<ExpansionFacilitation />} />
+              <Route path="/alliance/enablement" element={<InnovationEnablement />} />
+              <Route path="/alliance/development" element={<AllianceDevelopment />} />
+              <Route path="/alliance/accreditation" element={<Accreditation />} />
+              <Route path="/engagement/member" element={<MemberPage />} />
+              <Route path="/engagement/partner" element={<Partner />} />
+              <Route path="/engagement/volunteer" element={<Volunteer />} />
+              <Route path="/engagement/support" element={<Support />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

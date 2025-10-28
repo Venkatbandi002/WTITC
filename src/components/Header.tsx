@@ -91,8 +91,7 @@ const navItems = [
             { name: "Start a Chapter", path: "/engagement/chapter" },
             { name: "Partner with Us", path: "/engagement/partner" },
             { name: "Volunteer Program", path: "/engagement/volunteer" },
-            { name: "Contact Secretariat", path: "/engagement/contact" },
-            { name: "Support", path: "/support" },
+            { name: "Support", path: "/engagement/support" },
         ]
     },
 ];

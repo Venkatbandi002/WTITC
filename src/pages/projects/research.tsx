@@ -159,18 +159,14 @@ const FutureFrontiers: React.FC = () => {
         <div>
             
             {/* --- Section Header - Now left-aligned --- */}
-            <header className="text-left mb-6">
-                <span className="text-sm font-semibold uppercase tracking-widest text-blue-700 mb-2 block">
-                    Research & Development Mandate
-                </span>
-                <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
-                    Exploring Future Frontiers
-                </h2>
-                {/* Removed max-w-4xl mx-auto to ensure left alignment */}
-                <p className="text-xl text-gray-600">
-                    Our R&D initiatives focus on pre-commercial and foundational technologies that will shape the next decade of global innovation and create lasting societal impact.
-                </p>
-            </header>
+            <div className="mx-auto text-left ">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                 Exploring Future Frontiers
+              </h2>
+              <p className="text-lg text-gray-700 max-w-2xl">
+                  Our R&D initiatives focus on pre-commercial and foundational technologies that will shape the next decade of global innovation and create lasting societal impact.
+              </p>
+          </div>
 
             {/* --- Stacked Sections Layout (No surrounding card look) --- */}
             <div>
