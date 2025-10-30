@@ -65,8 +65,8 @@ const ProcessSection = () => {
 // --- 4. Main App Component ---
 const Partner = () => {
     return (
-        <div className="min-h-screen bg-white font-['Inter'] antialiased p-4 sm:p-8 lg:p-12">
-            <div className="max-w-7xl mx-auto">
+        <div>
+            <div>
                 
                 {/* --- HEADER SECTION --- */}
                 <div className="mb-16 sm:mb-20 lg:grid lg:grid-cols-12 lg:gap-12 items-start">

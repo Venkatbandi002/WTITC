@@ -1,179 +1,142 @@
 import React from 'react';
 
-// --- Inline SVG Icons (Lucide-react inspired) ---
+// --- 1. Define Sample Images (Replace Later) ---
+const memberPhotos = {
+    anjali: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&q=80", // Business woman
+    priya: "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=400&q=80",  // Confident woman
+    kavitha: "https://i.pinimg.com/originals/5c/0d/ad/5c0dad72169d2ef8a49ce555ab5e4b2f.jpg", // Tech professional
+    lena: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?auto=format&fit=crop&w=400&q=80",    // Office woman
+};
 
-// Icon for Stage 1: Early Education (Cap/Graduation)
-const EducationIcon = ({ className = 'w-6 h-6' }) => (
+// --- Inline SVG Icons ---
+const CrownIcon = ({ className = 'w-6 h-6' }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 19.5V15A2.5 2.5 0 0 1 6.5 12h11A2.5 2.5 0 0 1 20 15v4.5"/><path d="M12 2L4 5l8 3l8-3l-8-3Z"/><path d="M10 12L4 15"/><path d="M14 12L20 15"/><path d="M12 8v4"/>
+        <path d="M12 5l-2.6 3.6-4.9 1.4L6 14.6l-1 5.4 6-2.5 6 2.5-1-5.4 3.5-4 4.9-1.4L14.6 5z" />
+    </svg>
+);
+const UsersIcon = ({ className = 'w-6 h-6' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+        <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M22 10a8 8 0 1 0-4 0" />
+    </svg>
+);
+const FeatherIcon = ({ className = 'w-6 h-6' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 17L3 21 7 13 15 17z" />
+        <path d="M18 17l4-4L15 6l-4 4 7 7z" />
+    </svg>
+);
+const BriefcaseIcon = ({ className = 'w-6 h-6' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
     </svg>
 );
 
-// Icon for Stage 2: Skill Building (Code/Terminal)
-const CodeIcon = ({ className = 'w-6 h-6' }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-    </svg>
-);
+// --- 2. Data Structure ---
+interface WitMember {
+    id: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    link: string;
+    icon: React.FC<{ className?: string }>;
+    color: string;
+}
 
-// Icon for Stage 3: Mentorship & Networking (Handshake)
-const HandshakeIcon = ({ className = 'w-6 h-6' }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.5.6L4 17"/><path d="m18 10 4 4"/><path d="m12 10 4 4"/><path d="M10 21V3L2 8l8 5V21"/>
-    </svg>
-);
+const accentColor = "bg-blue-600";
 
-// Icon for Stage 4: Leadership (Trophy/Success)
-const TrophyIcon = ({ className = 'w-6 h-6' }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 9H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/><path d="M13.5 12H15L9 22L4.5 12H6.5"/><path d="M8 9h8"/>
-    </svg>
-);
-
-
-// --- Data Structure for Mission Pillars ---
-const missionPillars = [
+const witMembers: WitMember[] = [
     {
-        step: 1,
-        title: "Early Exposure & STEM Foundation",
-        description: "Engaging girls in technology and engineering from primary school through curated workshops and accessible learning resources to build foundational confidence in math and science.",
-        icon: EducationIcon,
-        color: "text-blue-600",
-        ring: "ring-blue-500/20",
+        id: "anjali",
+        title: "Dr. Anjali Rao",
+        subtitle: "Global AI Ethics Director",
+        description: "Focuses on developing fair and transparent AI models across all WTITC initiatives. Leads the 'Tech for Good' mentorship program.",
+        link: "/wit/anjali",
+        icon: CrownIcon,
+        color: accentColor,
     },
     {
-        step: 2,
-        title: "Skill Certification & Upskilling",
-        description: "Providing subsidized, specialized training and professional certifications in high-demand areas like AI/ML, Cybersecurity, and Cloud Computing to close the skills gap.",
-        icon: CodeIcon,
-        color: "text-teal-600",
-        ring: "ring-teal-500/20",
+        id: "priya",
+        title: "Ms. Priya Sharma",
+        subtitle: "Chapter Development Lead (Asia)",
+        description: "Responsible for scaling up local chapters and building strong community bonds for women professionals and students in the APAC region.",
+        link: "/wit/priya",
+        icon: UsersIcon,
+        color: accentColor,
     },
     {
-        step: 3,
-        title: "Mentorship & Peer Networking",
-        description: "Establishing formal mentorship programs that connect rising talent with established leaders to navigate complex career challenges, offering sponsorship and psychological safety.",
-        icon: HandshakeIcon,
-        color: "text-indigo-600",
-        ring: "ring-indigo-500/20",
+        id: "kavitha",
+        title: "Smt. Kavitha Reddy",
+        subtitle: "Startup Funding & Innovation Advisor",
+        description: "Guides women-led tech startups through the investment lifecycle, from seed funding to Series A rounds. Based in Silicon Valley.",
+        link: "/wit/kavitha",
+        icon: BriefcaseIcon,
+        color: accentColor,
     },
     {
-        step: 4,
-        title: "Pathways to Leadership",
-        description: "Actively promoting gender equity in hiring and executive placement, ensuring women are visible and highly represented in senior decision-making roles across the industry.",
-        icon: TrophyIcon,
-        color: "text-purple-600",
-        ring: "ring-purple-500/20",
+        id: "lena",
+        title: "Ms. Lena Gupta",
+        subtitle: "Cybersecurity Policy Specialist",
+        description: "Works on global digital policy and privacy standards, ensuring WTITC's advocacy aligns with international data protection laws.",
+        link: "/wit/lena",
+        icon: FeatherIcon,
+        color: accentColor,
     },
 ];
 
-// --- Timeline Item Component ---
-const TimelineItem = ({ step, title, description, icon: Icon, color, ring, isLast }) => (
-    <div className="relative pb-12">
-        {/* Vertical Line Connector (Hidden on the last item) */}
-        {!isLast && (
-            <div className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></div>
-        )}
-
-        {/* Milestone Icon and Ring */}
-        <div className="relative flex items-start space-x-3">
-            <div className="relative">
-                {/* Ring-8 padding ensures the ring is substantial and looks good on all devices */}
-                <div className={`h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white ${ring} ${color} bg-white shadow-lg`}>
-                    <Icon className="w-5 h-5" />
-                </div>
-            </div>
-
-            {/* Content Card */}
-            <div className="min-w-0 flex-1 pt-1.5 pl-2">
-                <p className={`text-xs font-semibold tracking-wider uppercase ${color}`}>
-                    Pillar {step}
-                </p>
-                {/* Responsive font size for title: large on desktop, slightly smaller on mobile */}
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-0.5 mb-2">
-                    {title}
-                </h3>
-                <p className="text-gray-600 text-base">
-                    {description}
-                </p>
-            </div>
+// --- 3. Member Card Component ---
+const WitMemberCard: React.FC<{ member: WitMember }> = ({ member }) => {
+    const textColorClass = member.color.replace('bg-', 'text-');
+    return (
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 text-center transform transition duration-300 hover:scale-[1.02] hover:shadow-xl flex flex-col items-center">
+            <img
+                src={memberPhotos[member.id as keyof typeof memberPhotos]}
+                alt={member.title}
+                className="w-28 h-28 rounded-full object-cover mb-4 border-2 border-blue-300 shadow-md"
+                onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "https://placehold.co/150x150/e0f2fe/1e40af?text=Photo";
+                }}
+            />
+            <h3 className="text-xl font-bold text-gray-900 mb-1">{member.title}</h3>
+            <p className={`text-sm ${textColorClass} font-medium mb-4`}>{member.subtitle}</p>
+            <p className="text-gray-700 text-base mb-6 flex-grow">{member.description}</p>
+            <a href={member.link} className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition">
+                View Profile
+                <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14" />
+                    <path d="M12 5l7 7-7 7" />
+                </svg>
+            </a>
         </div>
-    </div>
-);
+    );
+};
 
-// --- Stat Card Component for Left Panel ---
-const StatCard = ({ number, label }) => (
-    <div className="bg-white border-l-4 border-indigo-500 p-4 rounded-lg shadow-md mb-4">
-        <p className="text-3xl font-extrabold text-indigo-600">{number}</p>
-        <p className="text-sm font-medium text-gray-500">{label}</p>
-    </div>
-);
-
-
-// --- Main Component ---
-
-const WomenInTech = () => {
+// --- 4. Main Component ---
+const WomenInTech: React.FC = () => {
     return (
         <div>
             <div>
-
-                {/* Main Grid: Stacks vertically on mobile, switches to two columns on 'lg' breakpoint */}
-                <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
-
-                    {/* Left Column: Header & Context (Full width on mobile, Col-span 4 on desktop) */}
-                    <div className="lg:col-span-4 self-start">
-                        <h2 className="text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-3">
-                            The Equity Imperative
-                        </h2>
-                        {/* Title size adjusted responsively */}
-                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-                            Paving the Way for Women in Tech
-                        </h1>
-                        <p className="mt-4 text-base sm:text-lg text-gray-600 mb-8">
-                            A diverse workforce is essential for technological innovation. Our mission is built on *four non-negotiable pillars* designed to address systemic barriers and foster an environment where female talent not only enters but thrives and leads the industry.
-                        </p>
-
-                        {/* Stats Section: Ensures good padding on small screens */}
-                        <div className="bg-white p-6 rounded-xl shadow-xl border border-gray-100">
-                            <h3 className="text-xl font-bold text-gray-800 mb-4">Why This Matters:</h3>
-                            <StatCard number="28%" label="Current global female representation in Tech roles." />
-                            <StatCard number="2x" label="Faster growth for companies with gender-diverse leadership." />
-                            <StatCard number="$1.6 Trillion" label="Potential economic boost from closing the gender gap." />
-                        </div>
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                    <div className="lg:col-span-1 space-y-4 pt-4">
+                        <h1 className="text-4xl font-extrabold text-gray-900 border-b-2 border-blue-600 pb-2 inline-block">Women in Tech</h1>
+                        <p className="text-xl text-gray-700 font-medium">Celebrating and empowering our female leaders and innovators.</p>
+                        <p className="text-md text-gray-500">Highlighting the key women driving change, innovation, and mentorship within the WTITC community globally.</p>
                     </div>
-
-
-                    {/* Right Column: Vertical Timeline (Full width on mobile, Col-span 8 on desktop) */}
-                    <div className="lg:col-span-8">
-                        {/* Added margin top on mobile to separate from the left content */}
-                        <div className="flow-root mt-10 lg:mt-0 pl-4">
-                            {/* The timeline structure is kept simple and effective */}
-                            {missionPillars.map((pillar, index) => (
-                                <TimelineItem
-                                    key={index}
-                                    {...pillar}
-                                    isLast={index === missionPillars.length - 1}
-                                />
+                    <div className="lg:col-span-3">
+                        <header className="text-left mb-6">
+                            <h2 className="text-2xl font-bold text-gray-900">Meet Our Contributing Members</h2>
+                        </header>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {witMembers.map((member) => (
+                                <WitMemberCard key={member.id} member={member} />
                             ))}
                         </div>
                     </div>
                 </div>
-
-                {/* New CTA Button: Download Report */}
-                <div className="mt-12 sm:mt-16 pt-8 border-t border-gray-100 text-center">
-                    <button
-                        className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border border-transparent text-base sm:text-lg font-medium rounded-xl shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in-out transform hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50"
-                        // Updated onClick handler
-                        onClick={() => console.log('Downloading 2024 Equity Report...')}
-                    >
-                        Download the 2024 Equity Report
-                        {/* Icon representing download/document */}
-                        <svg className="ml-3 h-5 w-5 sm:h-6 sm:w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                    </button>
-                </div>
-
             </div>
         </div>
     );

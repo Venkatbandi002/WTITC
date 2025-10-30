@@ -139,8 +139,8 @@ const TierCard: React.FC<{ tier: Tier }> = ({ tier }) => {
 // --- 4. Main App Component ---
 const MemberPage: React.FC = () => {
     return (
-        <div className="min-h-screen bg-gray-50 font-['Inter'] p-8 sm:p-12">
-            <div className="max-w-7xl mx-auto">
+        <div>
+            <div>
                 
                 {/* Header */}
                 <header className="text-center mb-12">

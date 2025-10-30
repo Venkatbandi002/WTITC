@@ -7,6 +7,15 @@ import homeBanner from "@/assets/home-banner.jpg";
 import carousel1 from "@/assets/carousel-1.jpg";
 import carousel2 from "@/assets/carousel-2.jpg";
 import carousel3 from "@/assets/carousel-3.jpg";
+import one from "@/assets/WTITC/1.png";
+import two from "@/assets/WTITC/2.png";
+import three from "@/assets/WTITC/3.png";
+import four from "@/assets/WTITC/4.png";
+import five from "@/assets/WTITC/5.png";
+import six from "@/assets/WTITC/6.png";
+import seven from "@/assets/WTITC/7.png";
+import eight from "@/assets/WTITC/8.png";
+import nine from "@/assets/WTITC/11.png";
 import { url } from "inspector";
 import InteractiveMapPlaceholder from "@/components/ui/InteractiveMapPlaceholder";
  
@@ -91,15 +100,40 @@ const Home = () => {
       description: "Our new office in the heart of innovation"
     },
     {
-      src: carousel2,
-      alt: "Hyderabad Tech Hub",
-      title: "Hyderabad Headquarters",
-      description: "Connecting Telugu technocrats worldwide"
-    },
-    {
       src: carousel3,
       alt: "Global Network",
       title: "Global Presence",
+      description: "Empowering IT professionals across continents"
+    },
+    {
+      src: six,
+      alt: "Global Network",
+      title: "Global Presence",
+      description: "Empowering IT professionals across continents"
+    }
+    ,
+    {
+      src: eight,
+      alt: "Global Network",
+      title: "Global Presence",
+      description: "Empowering IT professionals across continents"
+    },
+    {
+      src: one,
+      alt: "Global Network",
+      title: "Global Presence",
+      description: "Empowering IT professionals across continents"
+    },
+    {
+      src: five,
+      alt: "Global Network",
+      title: "Global Presence",
+      description: "Empowering IT professionals across continents"
+    },
+    {
+      src: seven,
+      alt: "Global Network",
+      title: "WTITC 2023",
       description: "Empowering IT professionals across continents"
     }
   ];
@@ -163,7 +197,7 @@ const Home = () => {
       </section>
       {/* Projects Section */}
       <section>
-        <h2 className="text-3xl font-bold mb-8">Our Initiatives</h2>
+        <h2 className="text-3xl font-bold mb-8">Linked Endeavours</h2>
         <div className="flex flex-col gap-10">
   {projects.map((project, index) => (
     <div key={index} className="flex items-start gap-4">

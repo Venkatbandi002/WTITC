@@ -114,8 +114,8 @@ const AllianceNetwork: React.FC = () => {
     const tabs: (PartnerType | 'All')[] = ['All', 'Strategic', 'Industry', 'Research', 'Government'];
 
     return (
-        <div className="min-h-screen bg-gray-50 font-['Inter'] antialiased p-4 sm:p-8 lg:p-12">
-            <div className="max-w-7xl mx-auto">
+        <div>
+            <div>
 
                 {/* --- Header Section (White Card) --- */}
                 <header className="py-10 px-6 sm:py-16 sm:px-12 bg-white rounded-xl shadow-xl border-t-8 border-blue-600 mb-12">

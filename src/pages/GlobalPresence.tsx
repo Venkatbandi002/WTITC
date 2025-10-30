@@ -1,162 +1,202 @@
-import { Card } from "@/components/ui/card";
-import { MapPin, Users, Building, TrendingUp } from "lucide-react";
-import InteractiveMapPlaceholder from "@/components/ui/InteractiveMapPlaceholder";
+import React from 'react';
+import leader from "@/assets/about-banner.jpg"
 
-const GlobalPresence = () => {
-  const offices = [
+// --- 1. Define Placeholder Assets and Icons ---
+
+// Placeholder Image URL for the header banner (Updated to a global theme)
+const outreachImg = "https://placehold.co/1200x320/2563eb/ffffff?text=Global+Communication+Network";
+
+// Define a unified blue color for the accents
+const accentColor = "bg-blue-600";
+
+// Inline SVG Icons for the new Global Sections
+const TargetIcon = ({ className = 'w-6 h-6' }) => (
+    // Icon for Global Pulse (Focus/Monitoring)
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <circle cx="12" cy="12" r="6"></circle>
+        <circle cx="12" cy="12" r="2"></circle>
+    </svg>
+);
+
+const UsersIcon = ({ className = 'w-6 h-6' }) => (
+    // Icon for Global Chapters (Groups/Community)
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+        <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M22 10a8 8 0 1 0-4 0"></path>
+    </svg>
+);
+
+const FeatherIcon = ({ className = 'w-6 h-6' }) => (
+    // Icon for Global Conclaves (Events/Meetings)
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 17L3 21 7 13 15 17z"></path>
+        <path d="M18 17l4-4L15 6l-4 4 7 7z"></path>
+    </svg>
+);
+
+const FileTextIcon = ({ className = 'w-6 h-6' }) => (
+    // Icon for Global Bulletin (Official Announcements)
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <line x1="10" y1="9" x2="8" y2="9"></line>
+    </svg>
+);
+
+const BarChartIcon = ({ className = 'w-6 h-6' }) => (
+    // Icon for Global Metrics (Data/KPIs)
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="20" x2="12" y2="10"></line>
+        <line x1="18" y1="20" x2="18" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="16"></line>
+    </svg>
+);
+
+
+// --- 2. Data Structure for Global Outreach Sections ---
+
+type GlobalSection = {
+    title: string;
+    subtitle: string;
+    description: string;
+    link: string;
+    icon: React.FC<{ className?: string }>;
+    color: string;
+};
+
+const globalOutreachSections: GlobalSection[] = [
     {
-      location: "Hyderabad, India",
-      type: "Headquarters",
-      address: "Road No. 45, Jubilee Hills, Hyderabad, Telangana 500033",
-      email: "hyderabad@wtitc.org",
-      phone: "+91 98765 43210",
-      members: "5,000+"
+        title: "Global Pulse",
+        subtitle: "Real-time Insight & Sentiment Analysis",
+        description: "A live feed of aggregated data reflecting regional activities, sentiment, and the immediate impact of our latest initiatives worldwide.",
+        link: "/outreach/pulse",
+        icon: TargetIcon,
+        color: accentColor,
     },
     {
-      location: "Silicon Valley, USA",
-      type: "Regional Office",
-      address: "1234 Innovation Drive, San Jose, CA 95110",
-      email: "sv@wtitc.org",
-      phone: "+1 (408) 555-0123",
-      members: "2,500+"
-    }
-  ];
+        title: "Global Chapters",
+        subtitle: "Local Hubs & Community Building",
+        description: "Information and contact points for our decentralized local chapters, fostering grass-roots engagement and specific regional projects.",
+        link: "/global/chapters",
+        icon: UsersIcon,
+        color: accentColor,
+    },
+    {
+        title: "Global Conclaves",
+        subtitle: "Executive Summits & Regional Meetings",
+        description: "An overview of upcoming and past high-level events, conferences, and virtual summits designed to align strategic direction across all regions.",
+        link: "/outreach/conclaves",
+        icon: FeatherIcon,
+        color: accentColor,
+    },
+    {
+        title: "Global Bulletin",
+        subtitle: "Official Announcements & News Updates",
+        description: "The primary source for all official communications, policy changes, success stories, and critical notices from the central organization.",
+        link: "/outreach/bulletin",
+        icon: FileTextIcon,
+        color: accentColor,
+    },
+    {
+        title: "Global Metrics",
+        subtitle: "Performance Data & Impact Reports",
+        description: "Transparent access to our key performance indicators (KPIs), financial data, and audited reports detailing our global impact and efficiency.",
+        link: "/outreach/metrics",
+        icon: BarChartIcon,
+        color: accentColor,
+    },
+];
 
-  const presence = [
-    { country: "United States", members: "3,000+", cities: ["San Jose", "Seattle", "Austin"] },
-    { country: "India", members: "8,000+", cities: ["Hyderabad", "Bangalore", "Chennai", "Pune"] },
-    { country: "United Kingdom", members: "1,500+", cities: ["London", "Manchester"] },
-    { country: "Canada", members: "800+", cities: ["Toronto", "Vancouver"] },
-    { country: "Australia", members: "600+", cities: ["Sydney", "Melbourne"] },
-    { country: "UAE", members: "1,200+", cities: ["Dubai", "Abu Dhabi"] },
-    { country: "Singapore", members: "500+", cities: ["Singapore"] },
-    { country: "Germany", members: "400+", cities: ["Berlin", "Munich"] }
-  ];
 
-  const futureExpansion = [
-    "Japan - Tokyo Office (2025)",
-    "Ireland - Dublin Hub (2025)",
-    "Malaysia - Kuala Lumpur (2026)",
-    "South Africa - Johannesburg (2026)"
-  ];
+// --- 3. Reusable Section Item Component ---
 
-  return (
-    <div className="space-y-12">
-      {/* Header */}
-      <section className="text-center">
-        <h1 className="text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-          Global Presence
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Connecting Telugu IT professionals across continents with strategic offices and 
-          community presence in major tech hubs worldwide
-        </p>
-      </section>
+const GlobalSectionItem: React.FC<{ section: GlobalSection }> = ({ section }) => {
+    const IconComponent = section.icon;
+    const textColorClass = section.color.replace('bg-', 'text-');
 
-      {/* Global Stats */}
-      <section className="grid md:grid-cols-4 gap-6">
-        <Card className="p-6 text-center shadow-card hover:shadow-hover transition-smooth">
-          <Users className="h-10 w-10 text-primary mx-auto mb-3" />
-          <div className="text-3xl font-bold mb-1">15,000+</div>
-          <div className="text-sm text-muted-foreground">Active Members</div>
-        </Card>
-        <Card className="p-6 text-center shadow-card hover:shadow-hover transition-smooth">
-          <MapPin className="h-10 w-10 text-primary mx-auto mb-3" />
-          <div className="text-3xl font-bold mb-1">25+</div>
-          <div className="text-sm text-muted-foreground">Countries</div>
-        </Card>
-        <Card className="p-6 text-center shadow-card hover:shadow-hover transition-smooth">
-          <Building className="h-10 w-10 text-primary mx-auto mb-3" />
-          <div className="text-3xl font-bold mb-1">2</div>
-          <div className="text-sm text-muted-foreground">Regional Offices</div>
-        </Card>
-        <Card className="p-6 text-center shadow-card hover:shadow-hover transition-smooth">
-          <TrendingUp className="h-10 w-10 text-primary mx-auto mb-3" />
-          <div className="text-3xl font-bold mb-1">50+</div>
-          <div className="text-sm text-muted-foreground">City Chapters</div>
-        </Card>
-      </section>
+    return (
+        <div className="flex flex-col sm:flex-row items-start py-6 border-b border-gray-100 last:border-b-0">
+            <div className={`p-4 ${section.color}/10 rounded-xl ${textColorClass} flex-shrink-0 sm:mr-6 mb-4 sm:mb-0`}>
+                <IconComponent className="w-8 h-8" />
+            </div>
 
-      {/* Office Locations */}
-      <section>
-        <h2 className="text-3xl font-bold mb-8">Our Offices</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {offices.map((office, index) => (
-            <Card key={index} className="p-8 shadow-card hover:shadow-hover transition-smooth">
-              <div className="flex items-start gap-4 mb-4">
-                <Building className="h-8 w-8 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-2xl font-bold mb-1">{office.location}</h3>
-                  <p className="text-primary font-semibold">{office.type}</p>
+            <div className="flex-grow">
+                <h3 className="text-2xl font-bold text-gray-900 leading-snug">{section.title}</h3>
+                <p className={`text-md ${textColorClass} font-medium mt-1 mb-3`}>{section.subtitle}</p>
+                <p className="text-gray-700 mb-4">{section.description}</p>
+
+                <a
+                    href={section.link}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-blue-600 hover:bg-blue-700 transition duration-150"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        console.log(`Simulating navigation to: ${section.link}`);
+                    }}
+                >
+                    View {section.title.split(' ')[1] || 'Details'}
+                    <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    );
+};
+
+
+// --- 4. Main Component (GlobalPresence) ---
+
+const GlobalPresence: React.FC = () => {
+    return (
+        <div className="">
+            <div>
+                <div className="space-y-12">
+                    <section className="relative h-80 rounded-xl overflow-hidden shadow-xl" style={{ "--primary": "#2563eb" } as React.CSSProperties}>
+                        <img
+                            src={leader}
+                            alt="Global Communication Network"
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "https://placehold.co/1200x320/2563eb/ffffff?text=Global+Outreach+Center";
+                            }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-blue-600/0 flex items-center">
+                            <div className="container mx-auto px-6">
+                                <h1 className="text-5xl font-bold text-white">Global Presence</h1>
+                                <p className="text-xl text-white/90 mt-2">
+                                    Connecting our global network with real-time data and official communications.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="">
+                        {/*<header className="text-center mb-10">
+                            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
+                                Centralized Communication Hub
+                            </h2>
+                            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                                Access all our key communication channels, local networks, and performance metrics here.
+                            </p>
+                        </header>*/}
+
+                        <div className="space-y-4 pt-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                            {globalOutreachSections.map((section) => (
+                                <GlobalSectionItem key={section.title} section={section} />
+                            ))}
+                        </div>
+                    </section>
                 </div>
-              </div>
-              <div className="space-y-2 text-sm">
-                <p className="flex items-start gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
-                  <span>{office.address}</span>
-                </p>
-                <p className="text-muted-foreground">Email: {office.email}</p>
-                <p className="text-muted-foreground">Phone: {office.phone}</p>
-                <p className="font-semibold text-primary">Members: {office.members}</p>
-              </div>
-            </Card>
-          ))}
+            </div>
         </div>
-      </section>
-
-      {/* Country Presence */}
-      <section>
-        <h2 className="text-3xl font-bold mb-8">Country-wise Presence</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {presence.map((item, index) => (
-            <Card key={index} className="p-5 shadow-card hover:shadow-hover transition-smooth">
-              <h3 className="font-bold text-lg mb-2">{item.country}</h3>
-              <p className="text-2xl font-bold text-primary mb-3">{item.members}</p>
-              <div className="space-y-1">
-                {item.cities.map((city, idx) => (
-                  <div key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                    {city}
-                  </div>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Interactive Map Section */}
-      <section>
-        {/* Interactive Map Section */}
-      <section>
-        <Card className="p-8 shadow-card">
-          <h2 className="text-3xl font-bold mb-6 text-center">Global Network Map</h2>
-          {/* REPLACED CONTENT BELOW */}
-          <InteractiveMapPlaceholder />
-        </Card>
-      </section>
-      </section>
-
-      {/* Future Expansion */}
-      <section>
-        <h2 className="text-3xl font-bold mb-8">Future Expansion Plans</h2>
-        <Card className="p-8 shadow-card bg-secondary/30">
-          <div className="grid md:grid-cols-2 gap-4">
-            {futureExpansion.map((plan, index) => (
-              <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-lg">
-                <TrendingUp className="h-6 w-6 text-primary flex-shrink-0" />
-                <span className="font-semibold">{plan}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-muted-foreground mt-6 text-center">
-            We're continuously expanding to serve Telugu IT professionals in emerging tech hubs worldwide
-          </p>
-        </Card>
-      </section>
-
-    </div>
-  );
+    );
 };
 
 export default GlobalPresence;

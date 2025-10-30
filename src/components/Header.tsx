@@ -16,7 +16,6 @@ const navItems = [
         dropdown: [
             { name: "Chairman at the Forefront", path: "/leadership/chairman" },
             { name: "About WTITC", path: "/leadership/about" },
-            { name: "Global Council Leaders", path: "/leadership/Council" },
             { name: "Young Voices", path: "/leadership/Young" },
             { name: "Strategic Mandate", path: "/leadership/mandate" },
         ]
@@ -29,6 +28,7 @@ const navItems = [
         dropdown: [
             { name: "Global Chapters", path: "/global/chapters" },
             { name: "Global Conclaves", path: "/global/conclaves" },
+            { name: "Global Council Leaders", path: "/global/Council" },
             { name: "Global Bulletin", path: "/global/bulletin" },
             { name: "Global Metrics", path: "/global/metrics" },
         ]
@@ -43,17 +43,6 @@ const navItems = [
             { name: "Future Frontiers (R&D)", path: "/projects/research" },
             { name: "Alliance Network", path: "/projects/alliances" },
             { name: "Global Missions", path: "/projects/missions" },
-        ]
-    },
-    
-    // 4. Beyond Borders (Focused on Global reach, events, business)
-    {
-        name: "Beyond Borders",
-        path: "/borders",
-        dropdown: [
-            { name: "Business Connect", path: "/borders/business" },
-            { name: "Talent Bridge", path: "/borders/talent" },
-            { name: "Hall of Impact", path: "/borders/impact" },
         ]
     },
 

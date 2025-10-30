@@ -1,11 +1,11 @@
 import React from "react";
 
 // --- 1. Data Structure for Global Chapters ---
-
 interface Chapter {
   id: number;
   city: string;
   region: string;
+  country: string;
   imageURL: string;
   description: string;
   alignment: "left" | "right";
@@ -14,47 +14,94 @@ interface Chapter {
 const chaptersData: Chapter[] = [
   {
     id: 1,
-    city: "San Francisco",
-    region: "North America West",
-    imageURL: "https://placehold.co/600x400/2563eb/ffffff?text=USA+Flag+Outline",
+    city: "London",
+    region: "Europe & UK",
+    country: "United Kingdom",
+    imageURL: "https://placehold.co/600x400/3b82f6/ffffff?text=UK+Flag+Outline",
     description:
-      "The birthplace of innovation and tech entrepreneurship, driving thought leadership and venture capital connections. Our members here lead initiatives in AI, Biotech, and scalable startups, setting the pace for global technology trends.",
+      "Connecting members with major European financial markets and technological ecosystems. The London chapter drives initiatives in FinTech, AI, and sustainable innovation.",
     alignment: "left",
   },
   {
     id: 2,
-    city: "Hyderabad",
-    region: "Asia Pacific",
-    imageURL: "https://placehold.co/600x400/1e40af/ffffff?text=India+Flag+Outline",
+    city: "Dallas",
+    region: "North America Central",
+    country: "United States (Texas)",
+    imageURL: "https://placehold.co/600x400/1d4ed8/ffffff?text=USA+Flag+Outline",
     description:
-      "Our core foundation and hub for talent acquisition, development, and government relations in India. This chapter focuses heavily on emerging talent development, large-scale IT services, and academic collaboration.",
+      "A growing technology hub fostering enterprise innovation, energy tech, and industrial modernization. The Dallas team actively collaborates on business expansion and research partnerships.",
     alignment: "right",
   },
   {
     id: 3,
-    city: "London",
-    region: "Europe & UK",
-    imageURL: "https://placehold.co/600x400/3b82f6/ffffff?text=UK+Flag+Outline",
+    city: "Hyderabad",
+    region: "Asia Pacific",
+    country: "India",
+    imageURL: "https://placehold.co/600x400/1e40af/ffffff?text=India+Flag+Outline",
     description:
-      "Connecting our members with major European financial markets and diverse technological landscapes. The focus here is primarily on FinTech, regulatory technology, and cross-border innovation projects.",
+      "Our innovation core in India — driving talent development, IT services, and academic collaboration. Hyderabad leads digital empowerment, startup incubation, and policy engagement programs.",
     alignment: "left",
   },
   {
     id: 4,
-    city: "Dallas",
-    region: "North America Central",
-    imageURL: "https://placehold.co/600x400/1d4ed8/ffffff?text=USA+Flag+Outline",
+    city: "Dubai",
+    region: "Middle East",
+    country: "United Arab Emirates",
+    imageURL:
+      "https://placehold.co/600x400/2563eb/ffffff?text=UAE+Flag+Outline",
     description:
-      "A fast-growing tech corridor focusing on enterprise solutions, energy tech, and regional networking. We leverage the area's strong industrial base to drive innovation in supply chain and infrastructure.",
+      "A dynamic business and technology gateway between Asia, Europe, and Africa. The Dubai chapter leads international trade partnerships, innovation expos, and smart city initiatives.",
+    alignment: "right",
+  },
+  {
+    id: 5,
+    city: "Accra",
+    region: "Africa West",
+    country: "Ghana",
+    imageURL:
+      "https://placehold.co/600x400/16a34a/ffffff?text=Ghana+Flag+Outline",
+    description:
+      "Empowering Africa’s emerging tech scene, the Ghana chapter focuses on education, entrepreneurship, and sustainability programs that support local innovators and small businesses.",
+    alignment: "left",
+  },
+  {
+    id: 6,
+    city: "Sydney",
+    region: "Oceania",
+    country: "Australia",
+    imageURL:
+      "https://placehold.co/600x400/0284c7/ffffff?text=Australia+Flag+Outline",
+    description:
+      "Bridging global innovation between the Pacific and Asia. The Sydney chapter drives research collaborations, climate tech projects, and youth engagement programs.",
+    alignment: "right",
+  },
+  {
+    id: 7,
+    city: "Cape Town",
+    region: "Africa South",
+    country: "South Africa",
+    imageURL:
+      "https://placehold.co/600x400/047857/ffffff?text=South+Africa+Flag+Outline",
+    description:
+      "Located at the intersection of culture and innovation, the South Africa chapter focuses on renewable energy, digital transformation, and leadership mentorship initiatives.",
+    alignment: "left",
+  },
+  {
+    id: 8,
+    city: "Singapore",
+    region: "Southeast Asia",
+    country: "Singapore",
+    imageURL:
+      "https://placehold.co/600x400/0ea5e9/ffffff?text=Singapore+Flag+Outline",
+    description:
+      "A global hub for innovation and policy collaboration, the Singapore chapter champions smart technology, cross-border partnerships, and sustainable business models.",
     alignment: "right",
   },
 ];
 
 // --- 2. Reusable Chapter Section Component ---
-
 const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
   const isImageLeft = chapter.alignment === "left";
-
   const contentOrder = isImageLeft
     ? [
         <ChapterImage key="img" chapter={chapter} />,
@@ -71,7 +118,7 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
         chapter.id % 2 !== 0 ? "bg-gray-50" : "bg-white"
       } border-t border-gray-100 w-full`}
     >
-      <div className="w-full px-6 ">
+      <div className="w-full px-6">
         <div className="flex flex-col md:flex-row gap-10 items-center justify-between w-full">
           {contentOrder}
         </div>
@@ -81,7 +128,6 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
 };
 
 // --- Sub-Component: Image Block ---
-
 const ChapterImage: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
   <div className="w-full md:w-1/2 flex justify-center">
     <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] w-full">
@@ -101,12 +147,11 @@ const ChapterImage: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
 );
 
 // --- Sub-Component: Text Block ---
-
 const ChapterText: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
   <div className="w-full md:w-1/2 bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300">
     <div className="text-center md:text-left">
       <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest mb-3 block">
-        {chapter.region} Chapter
+        {chapter.region} — {chapter.country}
       </span>
       <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-snug">
         {chapter.city}
@@ -121,19 +166,17 @@ const ChapterText: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
   </div>
 );
 
-// --- 3. Main Global Chapters Section Component ---
-
+// --- 3. Main Component ---
 const GlobalChapters: React.FC = () => {
   return (
-    <div >
-      {/* Section Heading (left-aligned like other pages) */}
-      <div className="mx-auto text-left ">
+    <div>
+      {/* Section Heading */}
+      <div className="mx-auto text-left mb-10">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
           Our Global Chapters
         </h2>
         <p className="text-lg text-gray-700 max-w-2xl">
-          A worldwide network connecting professionals and driving innovation in
-          technology hubs across the globe.
+          A worldwide network connecting innovators and leaders across continents to build the next generation of technology-driven communities.
         </p>
       </div>
 
