@@ -1,5 +1,6 @@
 import React from 'react';
 import leader from "@/assets/about-banner.jpg"
+import { useNavigate } from 'react-router-dom';
 
 // --- 1. Define Placeholder Assets and Icons ---
 
@@ -74,7 +75,7 @@ const globalOutreachSections: GlobalSection[] = [
         title: "Global Pulse",
         subtitle: "Real-time Insight & Sentiment Analysis",
         description: "A live feed of aggregated data reflecting regional activities, sentiment, and the immediate impact of our latest initiatives worldwide.",
-        link: "/outreach/pulse",
+        link: "/global/pulse",
         icon: TargetIcon,
         color: accentColor,
     },

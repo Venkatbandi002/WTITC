@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Search, ChevronDown,  Facebook, Instagram, Linkedin, Youtube, Mail, MapPin } from "lucide-react";
+import { Menu, X, Search, ChevronDown, Facebook, Instagram, Linkedin, Youtube, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import favicon from "@/assets/fevicon.png";
@@ -73,7 +73,7 @@ const navItems = [
     
     // 7. Join the Movement (Updated CTA Name)
     {
-        name: "Join the Movement", // Changed from "Global Engagement"
+        name: "Join the Movement",
         path: "/engagement",
         dropdown: [
             { name: "Become a Member", path: "/engagement/member" },
@@ -86,8 +86,8 @@ const navItems = [
 ];
 
 // Define colors to be reused in logic
-const BASE_COLOR = '#5B8FB9'; // Steel Blue (Used for Join button)
-const HOVER_COLOR = '#4E7799'; // Slightly darker blue
+const BASE_COLOR = '#5B8FB9';
+const HOVER_COLOR = '#4E7799';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -100,22 +100,18 @@ const Header = () => {
         return item.dropdown.some(subItem => isActive(subItem.path)) || isActive(item.path);
     };
 
-    // --- Dropdown Menu Component with Hover Stability & Navigation Fix ---
     const DropdownMenu = ({ item }) => {
         const isOpen = openDropdown === item.path;
 
         let dropdownWidthClass = 'w-52';
-        // Logic for wider dropdowns
         if (item.name === 'Innovation Grid') {
             dropdownWidthClass = 'w-64';
         } else if (item.name === 'Global Alliance' || item.name === 'Tech for Humanity' || item.name === 'Beyond Borders' || item.name === 'Join the Movement') {
-            dropdownWidthClass = 'w-[18rem]'; // Wider dropdown for longer names/more items
+            dropdownWidthClass = 'w-[18rem]';
         }
 
         const isInactive = !isDropdownActive(item);
         const inactiveClass = 'text-gray-300 hover:bg-white/10 hover:text-white';
-        
-        // Custom button style for the new "Join the Movement" CTA on desktop
         const isCta = item.name === 'Join the Movement';
 
         return (
@@ -127,7 +123,6 @@ const Header = () => {
                 <Link to={item.path}>
                     <Button
                         variant={isDropdownActive(item) && !isCta ? "default" : "ghost"}
-                        // Special styles for the CTA button in the main navigation bar
                         className={`font-medium transition-smooth 
                                     ${isCta 
                                         ? `font-bold tracking-wide text-white transition-colors duration-200`
@@ -140,11 +135,9 @@ const Header = () => {
                         onMouseEnter={isCta ? (e) => e.currentTarget.style.backgroundColor = HOVER_COLOR : undefined}
                         onMouseLeave={isCta ? (e) => e.currentTarget.style.backgroundColor = isDropdownActive(item) ? HOVER_COLOR : BASE_COLOR : undefined}
                         onMouseDown={(e) => {
-                            // On desktop, prevent default link behavior to keep the dropdown open/controlled by hover
                             if (window.innerWidth >= 1024) {
                                 e.preventDefault();
                             } else {
-                                // On mobile, toggle the dropdown
                                 setOpenDropdown(isOpen ? null : item.path);
                             }
                         }}
@@ -179,17 +172,11 @@ const Header = () => {
             </div>
         );
     };
-    // --- End Dropdown Menu Component ---
 
-    // Find the CTA item
     const ctaItem = navItems.find(item => item.name === 'Join the Movement');
 
     return (
         <header className="sticky top-0 z-50 shadow-sm">
-            
-            {/* ------------------------------------------------------------------
-                INJECTED CSS FOR LOGO ANIMATION & GLOW
-                ------------------------------------------------------------------ */}
             <style>
                 {`
                     @keyframes gradient-shift {
@@ -197,12 +184,10 @@ const Header = () => {
                         50% { background-position: 100% 50%; }
                         100% { background-position: 0% 50%; }
                     }
-                    /* Custom utility class for the blue glow, uses the primary HSL */
                     .shadow-blue-glow {
                         filter: drop-shadow(0 0 10px hsl(217 91% 60% / 0.8));
                     }
                     .animate-gradient-text {
-                        /* Gradient: primary (217 91% 60%) -> near white (0 0% 95%) -> primary */
                         background-image: linear-gradient(
                             90deg, 
                             hsl(217 91% 60%), 
@@ -217,49 +202,44 @@ const Header = () => {
                     }
                 `}
             </style>
-            
-            {/* ------------------------------------------------------------------
-                FIRST ROW SECTION: DARK BACKGROUND WITH LOGO & SEARCH
-                ------------------------------------------------------------------ */}
+
             <div className="w-full bg-gray-900 border-b border-white/10"> 
                 <div className="container mx-auto px-4 relative z-10">
-                    {/* Logo/Branding & Search */}
                     <div className="flex items-center justify-between py-4">
                         <div className="flex items-center gap-3">
                             <div className="text-3xl font-bold text-center">
                                 <img src={favicon} alt="WTITC Logo" className="h-14 w-auto mx-auto" />
                             </div>
+
+                            {/* ✅ Responsive Logo Text */}
                             <div className="text-3xl font-bold animate-gradient-text shadow-blue-glow">
-                                World Telugu Information Technology Council
+                                <span className="hidden sm:inline">World Telugu Information Technology Council</span>
+                                <span className="inline sm:hidden">WTITC</span>
                             </div>
                         </div>
 
-                        {/* Search Bar - Inverted colors for dark background */}
                         <div className="flex gap-5">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
-                <Facebook className="h-12 w-6" />
-              </a>
-              <a href="https://www.instagram.com/wtitc_network?igsh=dzVobno3anp6NjZq" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
-                <Instagram className="h-12 w-6" />
-              </a>
-              <a href="https://www.linkedin.com/company/wtitcnetwork/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
-                <Linkedin className="h-12 w-6" />
-              </a>
-              <a href="http://www.youtube.com/@wtitcouncil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
-                <Youtube className="h-12 w-6" />
-              </a>
-            </div>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
+                                <Facebook className="h-12 w-6" />
+                            </a>
+                            <a href="https://www.instagram.com/wtitc_network?igsh=dzVobno3anp6NjZq" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
+                                <Instagram className="h-12 w-6" />
+                            </a>
+                            <a href="https://www.linkedin.com/company/wtitcnetwork/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
+                                <Linkedin className="h-12 w-6" />
+                            </a>
+                            <a href="http://www.youtube.com/@wtitcouncil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
+                                <Youtube className="h-12 w-6" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            {/* ------------------------------------------------------------------
-                NAVIGATION/SECOND ROW SECTION (Now uses a dark background)
-                ------------------------------------------------------------------ */}
+
+            {/* Rest of your header unchanged */}
             <div className="bg-gray-900 border-b border-white/10"> 
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-between py-3">
-                        {/* Mobile Menu Toggle - Set to white/light for contrast */}
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="lg:hidden text-white"
@@ -268,9 +248,7 @@ const Header = () => {
                             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </button>
 
-                        {/* Desktop Navigation */}
                         <nav className="hidden lg:flex items-center gap-1 flex-wrap">
-                            {/* Filter out the CTA button from the main map, we'll place it at the end */}
                             {navItems.filter(item => item.name !== 'Join the Movement').map((item) => (
                                 item.dropdown ? (
                                     <DropdownMenu key={item.path} item={item} />
@@ -278,7 +256,6 @@ const Header = () => {
                                     <Link key={item.path} to={item.path}>
                                         <Button
                                             variant={isActive(item.path) ? "default" : "ghost"}
-                                            // Conditional class for text color contrast on dark background
                                             className={`font-medium transition-smooth ${!isActive(item.path) ? 'text-gray-300 hover:bg-white/10 hover:text-white' : ''}`}
                                             size="sm"
                                         >
@@ -289,7 +266,6 @@ const Header = () => {
                             ))}
                         </nav>
 
-                        {/* Right Corner Button: Join the Movement (CTA) - Use the DropdownMenu component for hover/dropdown logic */}
                         {ctaItem && (
                              <div className="hidden lg:block">
                                 <DropdownMenu item={ctaItem} />
@@ -299,10 +275,8 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu (Now also dark, using bg-gray-900) */}
             {isMenuOpen && (
                 <nav className="lg:hidden px-4 pb-4 space-y-2 border-t mt-1 bg-gray-900 text-white">
-                    {/* The CTA button (Join the Movement) */}
                     {ctaItem && ctaItem.dropdown && (
                         <div className="pt-2">
                             <Link to={ctaItem.dropdown[0].path} onClick={() => setIsMenuOpen(false)}>
@@ -326,7 +300,6 @@ const Header = () => {
                         <div key={item.path}>
                             {item.dropdown ? (
                                 <>
-                                    {/* Dropdown Header for Mobile */}
                                     <Button
                                         variant={isDropdownActive(item) ? "default" : "ghost"}
                                         className={`w-full justify-between font-medium ${!isDropdownActive(item) ? 'text-gray-300 hover:bg-white/10 hover:text-white' : ''}`}
@@ -336,13 +309,11 @@ const Header = () => {
                                         <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.path ? 'rotate-180' : ''}`} />
                                     </Button>
 
-                                    {/* Dropdown Items for Mobile */}
                                     {openDropdown === item.path && (
                                         <div className="pl-4 pt-1 space-y-1">
                                             {item.dropdown.map((subItem) => (
                                                 <Link key={subItem.path} to={subItem.path} onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>
                                                     <Button
-                                                        // Secondary variant works well for contrast on the dark background
                                                         variant={isActive(subItem.path) ? "secondary" : "ghost"} 
                                                         className="w-full justify-start text-sm text-white hover:bg-white/10"
                                                     >

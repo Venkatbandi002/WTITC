@@ -17,7 +17,7 @@ const chaptersData: Chapter[] = [
     city: "London",
     region: "Europe & UK",
     country: "United Kingdom",
-    imageURL: "https://placehold.co/600x400/3b82f6/ffffff?text=UK+Flag+Outline",
+    imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1920px-Flag_of_the_United_Kingdom.svg.png",
     description:
       "Connecting members with major European financial markets and technological ecosystems. The London chapter drives initiatives in FinTech, AI, and sustainable innovation.",
     alignment: "left",
@@ -27,7 +27,7 @@ const chaptersData: Chapter[] = [
     city: "Dallas",
     region: "North America Central",
     country: "United States (Texas)",
-    imageURL: "https://placehold.co/600x400/1d4ed8/ffffff?text=USA+Flag+Outline",
+    imageURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/1920px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
     description:
       "A growing technology hub fostering enterprise innovation, energy tech, and industrial modernization. The Dallas team actively collaborates on business expansion and research partnerships.",
     alignment: "right",
@@ -37,7 +37,7 @@ const chaptersData: Chapter[] = [
     city: "Hyderabad",
     region: "Asia Pacific",
     country: "India",
-    imageURL: "https://placehold.co/600x400/1e40af/ffffff?text=India+Flag+Outline",
+    imageURL: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1920px-Flag_of_India.svg.png",
     description:
       "Our innovation core in India — driving talent development, IT services, and academic collaboration. Hyderabad leads digital empowerment, startup incubation, and policy engagement programs.",
     alignment: "left",
@@ -48,7 +48,7 @@ const chaptersData: Chapter[] = [
     region: "Middle East",
     country: "United Arab Emirates",
     imageURL:
-      "https://placehold.co/600x400/2563eb/ffffff?text=UAE+Flag+Outline",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_United_Arab_Emirates.svg/1920px-Flag_of_the_United_Arab_Emirates.svg.png",
     description:
       "A dynamic business and technology gateway between Asia, Europe, and Africa. The Dubai chapter leads international trade partnerships, innovation expos, and smart city initiatives.",
     alignment: "right",
@@ -59,7 +59,7 @@ const chaptersData: Chapter[] = [
     region: "Africa West",
     country: "Ghana",
     imageURL:
-      "https://placehold.co/600x400/16a34a/ffffff?text=Ghana+Flag+Outline",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Ghana.svg/1920px-Flag_of_Ghana.svg.png",
     description:
       "Empowering Africa’s emerging tech scene, the Ghana chapter focuses on education, entrepreneurship, and sustainability programs that support local innovators and small businesses.",
     alignment: "left",
@@ -70,7 +70,7 @@ const chaptersData: Chapter[] = [
     region: "Oceania",
     country: "Australia",
     imageURL:
-      "https://placehold.co/600x400/0284c7/ffffff?text=Australia+Flag+Outline",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/1920px-Flag_of_Australia_%28converted%29.svg.png",
     description:
       "Bridging global innovation between the Pacific and Asia. The Sydney chapter drives research collaborations, climate tech projects, and youth engagement programs.",
     alignment: "right",
@@ -81,7 +81,7 @@ const chaptersData: Chapter[] = [
     region: "Africa South",
     country: "South Africa",
     imageURL:
-      "https://placehold.co/600x400/047857/ffffff?text=South+Africa+Flag+Outline",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/1920px-Flag_of_South_Africa.svg.png",
     description:
       "Located at the intersection of culture and innovation, the South Africa chapter focuses on renewable energy, digital transformation, and leadership mentorship initiatives.",
     alignment: "left",
@@ -92,7 +92,7 @@ const chaptersData: Chapter[] = [
     region: "Southeast Asia",
     country: "Singapore",
     imageURL:
-      "https://placehold.co/600x400/0ea5e9/ffffff?text=Singapore+Flag+Outline",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Flag_of_Singapore.svg/1920px-Flag_of_Singapore.svg.png",
     description:
       "A global hub for innovation and policy collaboration, the Singapore chapter champions smart technology, cross-border partnerships, and sustainable business models.",
     alignment: "right",
