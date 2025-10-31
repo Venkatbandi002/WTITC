@@ -51,6 +51,9 @@ import Partner from "./pages/engagement/partner";
 import Volunteer from "./pages/engagement/volunteer";
 import Support from "./pages/engagement/support";
 import TechForHumanity from "./pages/TechForHumanity";
+import ScrollToTop from './components/ScrollToTop';
+import ScrollToHash from './components/ScrollToHash';
+import JoinChapter from './pages/engagement/chapter';
 
 const queryClient = new QueryClient();
 
@@ -63,6 +66,8 @@ const App = () => (
         <div className="min-h-screen bg-background flex flex-col">
           <Header />
           <main className="flex-1 container mx-auto px-4 py-8">
+            <ScrollToTop />
+            <ScrollToHash />
             <Routes>
               {/* Main Pages */}
               <Route path="/" element={<Home />} />
@@ -119,6 +124,7 @@ const App = () => (
 
               {/* Engagement */}
               <Route path="/engagement/member" element={<MemberPage />} />
+              <Route path="/engagement/chapter" element={<JoinChapter />} />
               <Route path="/engagement/partner" element={<Partner />} />
               <Route path="/engagement" element={<JoinMovementPage />} />
               <Route path="/engagement/volunteer" element={<Volunteer />} />

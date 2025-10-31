@@ -1,5 +1,13 @@
 import React from "react";
 
+// --- Helper Function: Create Slug for ID ---
+// This ensures that "Silicon Valley" or "Cape Town" becomes "siliconvalley" or "capetown"
+const createSlug = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/\s/g, ''); // Remove all spaces
+};
+
 // --- 1. Data Structure for Global Chapters ---
 interface Chapter {
   id: number;
@@ -102,6 +110,10 @@ const chaptersData: Chapter[] = [
 // --- 2. Reusable Chapter Section Component ---
 const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
   const isImageLeft = chapter.alignment === "left";
+  
+  // *** NEW: Create the ID slug based on the city name ***
+  const sectionId = createSlug(chapter.city); 
+  
   const contentOrder = isImageLeft
     ? [
         <ChapterImage key="img" chapter={chapter} />,
@@ -114,11 +126,13 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
 
   return (
     <div
+      // *** NEW: Add the unique ID attribute here ***
+      id={sectionId}
       className={`py-12 ${
         chapter.id % 2 !== 0 ? "bg-gray-50" : "bg-white"
       } border-t border-gray-100 w-full`}
     >
-      <div className="w-full px-6">
+      <div className="w-full px-6 max-w-7xl mx-auto"> {/* Added max-w-7xl mx-auto for content centering */}
         <div className="flex flex-col md:flex-row gap-10 items-center justify-between w-full">
           {contentOrder}
         </div>
@@ -127,7 +141,7 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
   );
 };
 
-// --- Sub-Component: Image Block ---
+// --- Sub-Component: Image Block (No changes needed) ---
 const ChapterImage: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
   <div className="w-full md:w-1/2 flex justify-center">
     <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:scale-[1.03] w-full">
@@ -146,7 +160,7 @@ const ChapterImage: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
   </div>
 );
 
-// --- Sub-Component: Text Block ---
+// --- Sub-Component: Text Block (No changes needed) ---
 const ChapterText: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
   <div className="w-full md:w-1/2 bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300">
     <div className="text-center md:text-left">
@@ -169,30 +183,35 @@ const ChapterText: React.FC<{ chapter: Chapter }> = ({ chapter }) => (
 // --- 3. Main Component ---
 const GlobalChapters: React.FC = () => {
   return (
-    <div>
-      {/* Section Heading */}
-      <div className="mx-auto text-left mb-10">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
-          Our Global Chapters
-        </h2>
-        <p className="text-lg text-gray-700 max-w-2xl">
-          A worldwide network connecting innovators and leaders across continents to build the next generation of technology-driven communities.
-        </p>
+    <div className="py-12"> {/* Added vertical padding to the main container */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* Section Heading */}
+        <div className="mx-auto text-left mb-10">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+            Our Global Chapters
+          </h2>
+          <p className="text-lg text-gray-700 max-w-2xl">
+            A worldwide network connecting innovators and leaders across continents to build the next generation of technology-driven communities.
+          </p>
+        </div>
       </div>
 
-      {/* Chapter Sections */}
+      {/* Chapter Sections - Removed max-width wrapper here as it's now inside ChapterSection */}
       {chaptersData.map((chapter) => (
         <ChapterSection key={chapter.id} chapter={chapter} />
       ))}
 
       {/* Footer CTA */}
       <div className="py-16 text-center bg-white border-t border-gray-100 shadow-inner w-full">
-        <p className="text-gray-700 text-lg">
-          Interested in starting a chapter in your city?
-        </p>
-        <button className="mt-6 py-3 px-10 bg-gray-800 text-white text-md font-semibold rounded-lg shadow-lg hover:bg-gray-700 transition duration-300">
-          Contact Us
-        </button>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <p className="text-gray-700 text-lg">
+            Interested in starting a chapter in your city?
+          </p>
+          <button className="mt-6 py-3 px-10 bg-gray-800 text-white text-md font-semibold rounded-lg shadow-lg hover:bg-gray-700 transition duration-300">
+            <a href="/contact">Contact Us</a>
+          </button>
+        </div>
       </div>
     </div>
   );

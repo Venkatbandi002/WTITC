@@ -83,6 +83,7 @@ const navItems = [
             { name: "Support", path: "/engagement/support" },
         ]
     },
+    { name: "Contact", path: "/contact" },
 ];
 
 // Define colors to be reused in logic

@@ -1,5 +1,6 @@
 import React from "react";
-import leader from "@/assets/about-banner.jpg"
+import leader from "@/assets/about-banner.jpg";
+import { useNavigate } from "react-router-dom";
 
 // --- 1. Theme & Assets ---
 const deepBlue = "bg-blue-700";
@@ -7,7 +8,6 @@ const accentColor = deepBlue;
 const globalImg = "https://placehold.co/1200x320/1d4ed8/ffffff?text=Tech+For+Humanity+Initiative";
 
 // --- 2. SVG Icons ---
-
 const WomanIcon = ({ className = "w-6 h-6" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="7" r="4" />
@@ -42,7 +42,6 @@ const LeafIcon = ({ className = "w-6 h-6" }) => (
 );
 
 // --- 3. Data Structure ---
-
 type GlobalSection = {
   title: string;
   subtitle: string;
@@ -53,6 +52,15 @@ type GlobalSection = {
 };
 
 const techForHumanitySections: GlobalSection[] = [
+    {
+    title: "Rural Digital Missions",
+    subtitle: "Access, Connectivity & E-Governance",
+    description:
+      "Implementing last-mile connectivity projects and leveraging digital solutions to enhance healthcare, education, and access to government services in underserved communities.",
+    link: "/social/digital-missions",
+    icon: HomeIcon,
+    color: accentColor,
+  },
   {
     title: "Women in Tech",
     subtitle: "Inclusion & Skill Development Programs",
@@ -72,15 +80,6 @@ const techForHumanitySections: GlobalSection[] = [
     color: accentColor,
   },
   {
-    title: "Rural Digital Missions",
-    subtitle: "Access, Connectivity & E-Governance",
-    description:
-      "Implementing last-mile connectivity projects and leveraging digital solutions to enhance healthcare, education, and access to government services in underserved communities.",
-    link: "/social/digital-missions",
-    icon: HomeIcon,
-    color: accentColor,
-  },
-  {
     title: "Sustainability Initiatives",
     subtitle: "Green Tech & Climate Action Solutions",
     description:
@@ -92,8 +91,8 @@ const techForHumanitySections: GlobalSection[] = [
 ];
 
 // --- 4. Section Component ---
-
 const GlobalSectionItem: React.FC<{ section: GlobalSection }> = ({ section }) => {
+  const navigate = useNavigate();
   const IconComponent = section.icon;
   const textColorClass = section.color.replace("bg-", "text-");
   const linkBgClass = section.color.replace("bg-", "bg-");
@@ -112,66 +111,54 @@ const GlobalSectionItem: React.FC<{ section: GlobalSection }> = ({ section }) =>
         <p className={`text-md ${textColorClass} font-medium mt-1 mb-3`}>{section.subtitle}</p>
         <p className="text-gray-700 mb-4">{section.description}</p>
 
-        <a
-          href={section.link}
-          className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white ${linkBgClass} ${linkHoverClass}`}
+        <button
+          onClick={() => navigate(section.link)}
+          className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white ${linkBgClass} ${linkHoverClass} transition duration-150`}
         >
           Discover More
           <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14" />
             <path d="M12 5l7 7-7 7" />
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   );
 };
 
 // --- 5. Main Component ---
-
 const TechForHumanity: React.FC = () => {
   return (
-    <div className="">
-      <div>
-        <div className="space-y-12">
-          {/* Header */}
-          <section className="relative h-80 rounded-xl overflow-hidden shadow-xl">
-            <img
-              src={leader}
-              alt="Tech For Humanity Initiative"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.src = "https://placehold.co/1200x320/1d4ed8/ffffff?text=Innovating+for+Societal+Good";
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-700/90 to-blue-700/0 flex items-center">
-              <div className="container mx-auto px-6">
-                <h1 className="text-5xl font-bold text-white">Tech for Humanity</h1>
-                <p className="text-xl text-white/90 mt-2">
-                  Leveraging innovation to drive social progress, equity, and a sustainable future for all.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Sections */}
-          <section >
-            {/*<header className="text-center mb-10">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
-                Four Pillars of Impactful Technology
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Our core areas of focus to ensure technology serves the collective good.
+    <div>
+      <div className="space-y-12">
+        {/* Header */}
+        <section className="relative h-80 rounded-xl overflow-hidden shadow-xl">
+          <img
+            src={leader}
+            alt="Tech For Humanity Initiative"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = globalImg;
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-700/90 to-blue-700/0 flex items-center">
+            <div className="container mx-auto px-6">
+              <h1 className="text-5xl font-bold text-white">Tech for Humanity</h1>
+              <p className="text-xl text-white/90 mt-2">
+                Leveraging innovation to drive social progress, equity, and a sustainable future for all.
               </p>
-            </header>*/}
-
-            <div className="space-y-4 pt-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-              {techForHumanitySections.map((section) => (
-                <GlobalSectionItem key={section.title} section={section} />
-              ))}
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
+
+        {/* Sections */}
+        <section>
+          <div className="space-y-4 pt-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+            {techForHumanitySections.map((section) => (
+              <GlobalSectionItem key={section.title} section={section} />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

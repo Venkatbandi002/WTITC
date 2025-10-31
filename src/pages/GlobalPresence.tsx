@@ -1,77 +1,57 @@
 import React from 'react';
-import leader from "@/assets/about-banner.jpg"
+import leader from "@/assets/about-banner.jpg";
 import { useNavigate } from 'react-router-dom';
 
-// --- 1. Define Placeholder Assets and Icons ---
-
-// Placeholder Image URL for the header banner (Updated to a global theme)
+// Placeholder Image URL for the header banner
 const outreachImg = "https://placehold.co/1200x320/2563eb/ffffff?text=Global+Communication+Network";
-
-// Define a unified blue color for the accents
 const accentColor = "bg-blue-600";
 
-// Inline SVG Icons for the new Global Sections
+// --- Icons ---
 const TargetIcon = ({ className = 'w-6 h-6' }) => (
-    // Icon for Global Pulse (Focus/Monitoring)
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <circle cx="12" cy="12" r="6"></circle>
-        <circle cx="12" cy="12" r="2"></circle>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <circle cx="12" cy="12" r="6"></circle>
+    <circle cx="12" cy="12" r="2"></circle>
+  </svg>
 );
 
 const UsersIcon = ({ className = 'w-6 h-6' }) => (
-    // Icon for Global Chapters (Groups/Community)
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
-        <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
-        <path d="M22 10a8 8 0 1 0-4 0"></path>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+    <circle cx="12" cy="7" r="4"></circle>
+    <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+    <path d="M22 10a8 8 0 1 0-4 0"></path>
+  </svg>
 );
 
 const FeatherIcon = ({ className = 'w-6 h-6' }) => (
-    // Icon for Global Conclaves (Events/Meetings)
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M15 17L3 21 7 13 15 17z"></path>
-        <path d="M18 17l4-4L15 6l-4 4 7 7z"></path>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 17L3 21 7 13 15 17z"></path>
+    <path d="M18 17l4-4L15 6l-4 4 7 7z"></path>
+  </svg>
 );
 
 const FileTextIcon = ({ className = 'w-6 h-6' }) => (
-    // Icon for Global Bulletin (Official Announcements)
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-        <line x1="16" y1="13" x2="8" y2="13"></line>
-        <line x1="16" y1="17" x2="8" y2="17"></line>
-        <line x1="10" y1="9" x2="8" y2="9"></line>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+    <polyline points="14 2 14 8 20 8"></polyline>
+    <line x1="16" y1="13" x2="8" y2="13"></line>
+    <line x1="16" y1="17" x2="8" y2="17"></line>
+    <line x1="10" y1="9" x2="8" y2="9"></line>
+  </svg>
 );
 
 const BarChartIcon = ({ className = 'w-6 h-6' }) => (
-    // Icon for Global Metrics (Data/KPIs)
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="20" x2="12" y2="10"></line>
-        <line x1="18" y1="20" x2="18" y2="4"></line>
-        <line x1="6" y1="20" x2="6" y2="16"></line>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="12" y1="20" x2="12" y2="10"></line>
+    <line x1="18" y1="20" x2="18" y2="4"></line>
+    <line x1="6" y1="20" x2="6" y2="16"></line>
+  </svg>
 );
 
-
-// --- 2. Data Structure for Global Outreach Sections ---
-
-type GlobalSection = {
-    title: string;
-    subtitle: string;
-    description: string;
-    link: string;
-    icon: React.FC<{ className?: string }>;
-    color: string;
-};
-
-const globalOutreachSections: GlobalSection[] = [
-    {
+// --- Data ---
+const globalOutreachSections = [
+  {
         title: "Global Pulse",
         subtitle: "Real-time Insight & Sentiment Analysis",
         description: "A live feed of aggregated data reflecting regional activities, sentiment, and the immediate impact of our latest initiatives worldwide.",
@@ -88,10 +68,18 @@ const globalOutreachSections: GlobalSection[] = [
         color: accentColor,
     },
     {
+        title: "Global Council Leaders",
+        subtitle: "Executive Governance Team",
+        description: "Introducing the senior council members who manage regional operations and ensure unified execution of our worldwide strategy.",
+        link: "/global/Council",
+        icon: UsersIcon,
+        color: accentColor,
+    },
+    {
         title: "Global Conclaves",
         subtitle: "Executive Summits & Regional Meetings",
         description: "An overview of upcoming and past high-level events, conferences, and virtual summits designed to align strategic direction across all regions.",
-        link: "/outreach/conclaves",
+        link: "/global/conclaves",
         icon: FeatherIcon,
         color: accentColor,
     },
@@ -99,7 +87,7 @@ const globalOutreachSections: GlobalSection[] = [
         title: "Global Bulletin",
         subtitle: "Official Announcements & News Updates",
         description: "The primary source for all official communications, policy changes, success stories, and critical notices from the central organization.",
-        link: "/outreach/bulletin",
+        link: "/global/bulletin",
         icon: FileTextIcon,
         color: accentColor,
     },
@@ -107,97 +95,79 @@ const globalOutreachSections: GlobalSection[] = [
         title: "Global Metrics",
         subtitle: "Performance Data & Impact Reports",
         description: "Transparent access to our key performance indicators (KPIs), financial data, and audited reports detailing our global impact and efficiency.",
-        link: "/outreach/metrics",
+        link: "/global/metrics",
         icon: BarChartIcon,
         color: accentColor,
     },
 ];
 
+// --- Reusable Item Component ---
+const GlobalSectionItem = ({ section }) => {
+  const navigate = useNavigate();
+  const IconComponent = section.icon;
+  const textColorClass = section.color.replace('bg-', 'text-');
 
-// --- 3. Reusable Section Item Component ---
+  return (
+    <div className="flex flex-col sm:flex-row items-start py-6 border-b border-gray-100 last:border-b-0">
+      <div className={`p-4 ${section.color}/10 rounded-xl ${textColorClass} flex-shrink-0 sm:mr-6 mb-4 sm:mb-0`}>
+        <IconComponent className="w-8 h-8" />
+      </div>
 
-const GlobalSectionItem: React.FC<{ section: GlobalSection }> = ({ section }) => {
-    const IconComponent = section.icon;
-    const textColorClass = section.color.replace('bg-', 'text-');
+      <div className="flex-grow">
+        <h3 className="text-2xl font-bold text-gray-900 leading-snug">{section.title}</h3>
+        <p className={`text-md ${textColorClass} font-medium mt-1 mb-3`}>{section.subtitle}</p>
+        <p className="text-gray-700 mb-4">{section.description}</p>
 
-    return (
-        <div className="flex flex-col sm:flex-row items-start py-6 border-b border-gray-100 last:border-b-0">
-            <div className={`p-4 ${section.color}/10 rounded-xl ${textColorClass} flex-shrink-0 sm:mr-6 mb-4 sm:mb-0`}>
-                <IconComponent className="w-8 h-8" />
-            </div>
-
-            <div className="flex-grow">
-                <h3 className="text-2xl font-bold text-gray-900 leading-snug">{section.title}</h3>
-                <p className={`text-md ${textColorClass} font-medium mt-1 mb-3`}>{section.subtitle}</p>
-                <p className="text-gray-700 mb-4">{section.description}</p>
-
-                <a
-                    href={section.link}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-blue-600 hover:bg-blue-700 transition duration-150"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        console.log(`Simulating navigation to: ${section.link}`);
-                    }}
-                >
-                    View {section.title.split(' ')[1] || 'Details'}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    );
+        <button
+          onClick={() => navigate(section.link)}
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-blue-600 hover:bg-blue-700 transition duration-150"
+        >
+          View {section.title.split(' ')[1] || 'Details'}
+          <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
 };
 
-
-// --- 4. Main Component (GlobalPresence) ---
-
-const GlobalPresence: React.FC = () => {
-    return (
-        <div className="">
-            <div>
-                <div className="space-y-12">
-                    <section className="relative h-80 rounded-xl overflow-hidden shadow-xl" style={{ "--primary": "#2563eb" } as React.CSSProperties}>
-                        <img
-                            src={leader}
-                            alt="Global Communication Network"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                                e.currentTarget.onerror = null;
-                                e.currentTarget.src = "https://placehold.co/1200x320/2563eb/ffffff?text=Global+Outreach+Center";
-                            }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-blue-600/0 flex items-center">
-                            <div className="container mx-auto px-6">
-                                <h1 className="text-5xl font-bold text-white">Global Presence</h1>
-                                <p className="text-xl text-white/90 mt-2">
-                                    Connecting our global network with real-time data and official communications.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section className="">
-                        {/*<header className="text-center mb-10">
-                            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
-                                Centralized Communication Hub
-                            </h2>
-                            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                                Access all our key communication channels, local networks, and performance metrics here.
-                            </p>
-                        </header>*/}
-
-                        <div className="space-y-4 pt-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-                            {globalOutreachSections.map((section) => (
-                                <GlobalSectionItem key={section.title} section={section} />
-                            ))}
-                        </div>
-                    </section>
-                </div>
+// --- Main Page ---
+const GlobalPresence = () => {
+  return (
+    <div>
+      <div className="space-y-12">
+        <section className="relative h-80 rounded-xl overflow-hidden shadow-xl">
+          <img
+            src={leader}
+            alt="Global Communication Network"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = outreachImg;
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-blue-600/0 flex items-center">
+            <div className="container mx-auto px-6">
+              <h1 className="text-5xl font-bold text-white">Global Presence</h1>
+              <p className="text-xl text-white/90 mt-2">
+                Connecting our global network with real-time data and official communications.
+              </p>
             </div>
-        </div>
-    );
+          </div>
+        </section>
+
+        <section>
+          <div className="space-y-4 pt-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+            {globalOutreachSections.map((section) => (
+              <GlobalSectionItem key={section.title} section={section} />
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 };
 
 export default GlobalPresence;

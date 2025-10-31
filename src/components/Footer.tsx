@@ -59,7 +59,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@wtitc.org" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a href="mailto:#" className="text-muted-foreground hover:text-primary transition-smooth">
                   info@wtitc.org
                 </a>
               </li>
