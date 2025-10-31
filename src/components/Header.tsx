@@ -76,6 +76,7 @@ const navItems = [
         name: "Join the Movement",
         path: "/engagement",
         dropdown: [
+            { name: "Contact", path: "/contact" },
             { name: "Become a Member", path: "/engagement/member" },
             { name: "Start a Chapter", path: "/engagement/chapter" },
             { name: "Partner with Us", path: "/engagement/partner" },
@@ -83,7 +84,7 @@ const navItems = [
             { name: "Support", path: "/engagement/support" },
         ]
     },
-    { name: "Contact", path: "/contact" },
+    
 ];
 
 // Define colors to be reused in logic
